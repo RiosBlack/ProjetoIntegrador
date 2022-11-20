@@ -12,8 +12,9 @@ import java.time.LocalDateTime;
 
 public class Consulta {
     private int id;
-    private LocalDateTime dataConsulta;
-    private Boolean agenda;
-    private String paciente;
-    private String dentista;
+    //private LocalDateTime dataConsulta;
+    private String dataConsulta;
+    private Agenda agenda;
+    private Paciente paciente;
+    private Dentista dentista;
 }

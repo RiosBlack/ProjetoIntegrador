@@ -12,6 +12,7 @@ import java.time.LocalDateTime;
 
 public class Agenda {
     private int id;
-    private LocalDateTime dataDisponivel;
-    private String dentista;
+    //private LocalDateTime dataDisponivel;
+    private String dataDisponivel;
+    private Dentista dentista;
 }

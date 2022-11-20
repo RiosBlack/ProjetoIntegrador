@@ -4,6 +4,8 @@ package com.dh.clinicaOdontologica.model;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.time.LocalDateTime;
 
 @Data
@@ -14,5 +16,7 @@ public class Paciente {
     private String nome;
     private String sobrenome;
     private Integer rg;
-    private LocalDateTime dataRegistro;
+    //@DateTimeFormat(pattern = "dd/MM/yyyy")
+    //private LocalDateTime dataRegistro;
+    private String dataRegistro;
 }
