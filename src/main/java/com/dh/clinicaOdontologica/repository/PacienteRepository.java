@@ -1,9 +1,10 @@
 package com.dh.clinicaOdontologica.repository;
 import com.dh.clinicaOdontologica.model.Paciente;
+import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.List;
-
+@Repository
 public class PacienteRepository {
     public static List<Paciente> listPaciente = new ArrayList<>();
 
