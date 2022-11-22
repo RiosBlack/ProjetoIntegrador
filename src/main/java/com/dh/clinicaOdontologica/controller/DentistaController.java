@@ -1,7 +1,9 @@
 package com.dh.clinicaOdontologica.controller;
 
 import com.dh.clinicaOdontologica.model.Dentista;
+import com.dh.clinicaOdontologica.model.dto.DentistaDTO;
 import com.dh.clinicaOdontologica.service.DentistaService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -13,12 +15,12 @@ public class DentistaController {
     DentistaService dentistaService = new DentistaService();
 
     @GetMapping()
-    public List<Dentista> buscar(){
+    public List<DentistaDTO> buscar(){
         return dentistaService.buscar();
     }
 
     @PostMapping()
-    public Dentista salvar(@RequestBody Dentista dentista){
+    public ResponseEntity salvar(@RequestBody Dentista dentista){
         return dentistaService.salvar(dentista);
     }
 }
