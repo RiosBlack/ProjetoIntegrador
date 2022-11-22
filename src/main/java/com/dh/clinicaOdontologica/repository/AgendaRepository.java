@@ -1,10 +1,11 @@
 package com.dh.clinicaOdontologica.repository;
 
 import com.dh.clinicaOdontologica.model.Agenda;
+import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.List;
-
+@Repository
 public class AgendaRepository {
     public static List<Agenda> listAgenda = new ArrayList<>();
 
