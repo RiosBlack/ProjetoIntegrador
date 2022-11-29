@@ -3,12 +3,14 @@ package com.dh.clinicaOdontologica.service;
 
 import com.dh.clinicaOdontologica.model.Consulta;
 import com.dh.clinicaOdontologica.repository.ConsultaRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
-
+@Service
 public class ConsultaService {
-
-    ConsultaRepository consultaRepository = new ConsultaRepository();
+    @Autowired
+    ConsultaRepository consultaRepository; // = new ConsultaRepository();
 
     public List<Consulta> buscar(){
         return consultaRepository.buscar();

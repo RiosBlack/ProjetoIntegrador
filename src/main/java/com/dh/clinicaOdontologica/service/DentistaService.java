@@ -4,14 +4,17 @@ import com.dh.clinicaOdontologica.model.Dentista;
 import com.dh.clinicaOdontologica.model.dto.DentistaDTO;
 import com.dh.clinicaOdontologica.repository.DentistaRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
-
+@Service
 public class DentistaService {
-    DentistaRepository dentistaRepository = new DentistaRepository();
+    @Autowired
+    DentistaRepository dentistaRepository; // = new DentistaRepository();
 
     public List<DentistaDTO> buscar(){
         List<Dentista> listDentista = dentistaRepository.buscar();
