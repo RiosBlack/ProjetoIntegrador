@@ -5,7 +5,7 @@ import com.dh.clinicaOdontologica.model.Consulta;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ConsultaRepository {
+public interface ConsultaRepository {
     public static List<Consulta> listConsulta = new ArrayList<>();
 
     public List<Consulta> buscar(){

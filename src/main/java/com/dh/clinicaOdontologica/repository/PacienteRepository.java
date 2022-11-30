@@ -4,7 +4,7 @@ import com.dh.clinicaOdontologica.model.Paciente;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PacienteRepository {
+public interface PacienteRepository {
     public static List<Paciente> listPaciente = new ArrayList<>();
 
     public List<Paciente> buscar(){

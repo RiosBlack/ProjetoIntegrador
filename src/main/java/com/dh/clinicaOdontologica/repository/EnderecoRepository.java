@@ -5,7 +5,7 @@ import com.dh.clinicaOdontologica.model.Endereco;
 import java.util.ArrayList;
 import java.util.List;
 
-public class EnderecoRepository {
+public interface EnderecoRepository {
     public static List<Endereco> listEndereco = new ArrayList<>();
 
     public List<Endereco> buscar(){
