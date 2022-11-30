@@ -2,11 +2,14 @@ package com.dh.clinicaOdontologica.service;
 
 import com.dh.clinicaOdontologica.model.Paciente;
 import com.dh.clinicaOdontologica.repository.PacienteRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
-
+@Service
 public class PacienteService {
-    PacienteRepository pacienteRepository = new PacienteRepository();
+    @Autowired
+    PacienteRepository pacienteRepository; //= new PacienteRepository();
 
     public List<Paciente> buscar(){
         return pacienteRepository.buscar();
