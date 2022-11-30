@@ -5,8 +5,12 @@ import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.List;
+
+
+public interface ConsultaRepository {
+
 @Repository
-public class ConsultaRepository {
+
     public static List<Consulta> listConsulta = new ArrayList<>();
 
     public List<Consulta> buscar(){

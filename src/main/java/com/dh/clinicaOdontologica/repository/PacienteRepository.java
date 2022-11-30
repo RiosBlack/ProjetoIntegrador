@@ -4,8 +4,12 @@ import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.List;
+
+
+public interface PacienteRepository {
+
 @Repository
-public class PacienteRepository {
+
     public static List<Paciente> listPaciente = new ArrayList<>();
 
     public List<Paciente> buscar(){
