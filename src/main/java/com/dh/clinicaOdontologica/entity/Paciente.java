@@ -1,32 +1,34 @@
-package com.dh.clinicaOdontologica.model;
+package com.dh.clinicaOdontologica.entity;
 
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import org.springframework.format.annotation.DateTimeFormat;
+import lombok.*;
+import org.hibernate.validator.constraints.br.CPF;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import java.sql.Timestamp;
-import java.time.LocalDateTime;
 import java.util.List;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@ToString
+@Entity
 public class Paciente {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+    @NotBlank
     private String nome;
+    @NotBlank
     private String sobrenome;
-    private Integer rg;
+    @NotBlank
+    @CPF
+    private Integer cpf;
     //@DateTimeFormat(pattern = "dd/MM/yyyy")
     //private LocalDateTime dataRegistro;
     private Timestamp dataRegistro; //data que foi marcada a consulta
     @ManyToOne
+    @JoinColumn(name = "consulta_id")
     private List<Consulta> consultas;
 }

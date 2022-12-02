@@ -1,7 +1,7 @@
 package com.dh.clinicaOdontologica.controller;
 
-import com.dh.clinicaOdontologica.model.Dentista;
-import com.dh.clinicaOdontologica.model.dto.DentistaDTO;
+import com.dh.clinicaOdontologica.entity.Dentista;
+import com.dh.clinicaOdontologica.entity.dto.DentistaDTO;
 import com.dh.clinicaOdontologica.service.DentistaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

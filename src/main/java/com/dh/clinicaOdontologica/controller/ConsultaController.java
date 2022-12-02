@@ -1,6 +1,6 @@
 package com.dh.clinicaOdontologica.controller;
 
-import com.dh.clinicaOdontologica.model.Consulta;
+import com.dh.clinicaOdontologica.entity.Consulta;
 import com.dh.clinicaOdontologica.service.ConsultaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

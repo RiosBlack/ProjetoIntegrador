@@ -1,30 +1,32 @@
-package com.dh.clinicaOdontologica.model;
+package com.dh.clinicaOdontologica.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@ToString
+@Entity
 public class Endereco {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private int numero;
+    @NotBlank
     private Integer cep;
+    @NotBlank
     private String cidade;
     private String estado;
     private String rua;
     private String complemento;
-
+    @NotBlank
     @OneToOne
+    @JoinColumn(name = "paciente_id")
     private Paciente paciente;
-};
+
 }
+
 
