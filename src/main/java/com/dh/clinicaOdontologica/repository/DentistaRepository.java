@@ -1,24 +1,35 @@
 package com.dh.clinicaOdontologica.repository;
 
-import com.dh.clinicaOdontologica.model.Dentista;
+import com.dh.clinicaOdontologica.entity.Dentista;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.List;
-
-
-public interface DentistaRepository {
+import java.util.Optional;
 
 @Repository
+public interface DentistaRepository extends JpaRepository<Dentista, Long> {
 
-    public static List<Dentista> listDentista = new ArrayList<>();
+    Optional<Dentista> findById(Long aLong);
 
-    public List<Dentista> buscar(){
-        return listDentista;
-    }
+    List<Dentista> buscar();
 
-    public Dentista salvar(Dentista dentista){
-        listDentista.add(dentista);
-        return dentista;
-    }
+    Dentista salvar(Dentista dentista);
 }
+
+
+//public interface DentistaRepository {
+//
+//
+//    public static List<Dentista> listDentista = new ArrayList<>();
+//
+//    public List<Dentista> buscar(){
+//        return listDentista;
+//    }
+//
+//    public Dentista salvar(Dentista dentista){
+//        listDentista.add(dentista);
+//        return dentista;
+//    }
+//}
