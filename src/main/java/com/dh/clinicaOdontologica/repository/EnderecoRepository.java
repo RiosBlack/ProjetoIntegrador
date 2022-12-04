@@ -10,8 +10,11 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-public interface EnderecoRepository extends JpaRepository<Paciente,Long> {
-    Optional<Paciente> findById(Long aLong);
+public interface EnderecoRepository extends JpaRepository<Endereco,Long> {
+    Optional<Endereco> findById(Long aLong);
+    Endereco salvar(Endereco endereco);
+
+
 }
 //public interface EnderecoRepository {
 //
