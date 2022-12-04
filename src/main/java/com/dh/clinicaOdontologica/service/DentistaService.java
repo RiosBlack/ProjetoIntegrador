@@ -11,6 +11,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+
 @Service
 public class DentistaService {
     @Autowired
@@ -35,5 +37,12 @@ public class DentistaService {
         }catch(Exception e){
             return new ResponseEntity("Erro ao cadastrar Dentista", HttpStatus.BAD_REQUEST);
         }
+    }
+    public ResponseEntity deletar(Long id){
+        Optional<Dentista> dentista = dentistaRepository.findById(id);
+        if(dentista.isEmpty()){
+            return new ResponseEntity("Id do dentista não existe",HttpStatus.NOT_FOUND);
+        }dentistaRepository.deleteById(id);
+        return new ResponseEntity("Dentista foi excluído com sucesso", HttpStatus.OK);
     }
 }
