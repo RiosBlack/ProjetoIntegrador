@@ -32,8 +32,9 @@ public class DentistaService {
 
     public ResponseEntity salvar(Dentista dentista){
         try{
-            Dentista dentistaSalvo = dentistaRepository.salvar(dentista);
-            return new ResponseEntity("Dentista "+dentista.getNome() + " salvo", HttpStatus.CREATED);
+            Dentista dentistaSalvo = dentistaRepository.save(dentista);
+
+            return new ResponseEntity("Dentista "+dentistaSalvo.getNome() + " salvo", HttpStatus.CREATED);
         }catch(Exception e){
             return new ResponseEntity("Erro ao cadastrar Dentista", HttpStatus.BAD_REQUEST);
         }
