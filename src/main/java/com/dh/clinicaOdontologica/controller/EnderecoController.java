@@ -1,7 +1,7 @@
 package com.dh.clinicaOdontologica.controller;
 
-import com.dh.clinicaOdontologica.model.Endereco;
-import com.dh.clinicaOdontologica.repository.EnderecoRepository;
+import com.dh.clinicaOdontologica.entity.Endereco;
+import com.dh.clinicaOdontologica.service.EnderecoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -13,15 +13,16 @@ import java.util.List;
 @Controller
 public class EnderecoController {
     @Autowired
-    EnderecoRepository enderecoRepository; // = new EnderecoRepository();
+    EnderecoService enderecoService;
+//    EnderecoRepository enderecoRepository; // = new EnderecoRepository();
 
     @GetMapping()
     public List<Endereco> buscar(){
-        return enderecoRepository.buscar();
+        return enderecoService.buscar();
     }
 
     @PostMapping()
     public Endereco salvar(@RequestBody Endereco endereco){
-        return enderecoRepository.salvar(endereco);
+        return enderecoService.salvar(endereco);
     }
 }
