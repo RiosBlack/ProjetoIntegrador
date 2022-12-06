@@ -8,11 +8,9 @@ import java.util.List;
 @Service
 public class EnderecoService {
     @Autowired
-    EnderecoService enderecoService; //= new EnderecoService();
+    EnderecoService enderecoService;
 
-    public List<Endereco> buscar(){
-        return enderecoService.buscar();
-    }
+    public List<Endereco> buscar(){return enderecoService.buscar();}
 
     public Endereco salvar(Endereco endereco){
         return  enderecoService.salvar(endereco);

@@ -12,10 +12,10 @@ public class PacienteService {
     PacienteRepository pacienteRepository; //= new PacienteRepository();
 
     public List<Paciente> buscar(){
-        return pacienteRepository.buscar();
+        return pacienteRepository.findAll();
     }
 
     public Paciente salvar(Paciente paciente){
-        return  pacienteRepository.salvar(paciente);
+        return  pacienteRepository.save(paciente);
     }
 }

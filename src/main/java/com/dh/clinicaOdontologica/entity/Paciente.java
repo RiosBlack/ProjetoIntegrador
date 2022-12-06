@@ -30,5 +30,5 @@ public class Paciente {
     private Timestamp dataRegistro; //data que foi marcada a consulta
     @ManyToOne
     @JoinColumn(name = "consulta_id")
-    private List<Consulta> consultas;
+    private Consulta consulta;
 }

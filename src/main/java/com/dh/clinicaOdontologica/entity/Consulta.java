@@ -14,17 +14,19 @@ import java.sql.Timestamp;
 public class Consulta {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
-    //private LocalDateTime dataConsulta;
+    private long id;
+
+    @Column (nullable = false)
     private Timestamp dataConsulta;
 
-//    private Agenda agenda;
     @NotBlank
     @ManyToOne
     @JoinColumn(name = "paciente_id")
-    private Paciente paciente;
+    private Long pacienteID;
+
+
     @NotBlank
     @ManyToOne
     @JoinColumn(name = "dentista_id")
-    private Dentista dentista;
+    private Long dentistaID;
 }
