@@ -16,17 +16,15 @@ public class Consulta {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
+    @Column (nullable = false, unique = true)
+    private String consultaID;
+
     @Column (nullable = false)
     private Timestamp dataConsulta;
 
-    @NotBlank
-    @ManyToOne
-    @JoinColumn(name = "paciente_id")
-    private Long pacienteID;
+    @OneToOne
+    private Dentista dentista;
 
-
-    @NotBlank
-    @ManyToOne
-    @JoinColumn(name = "dentista_id")
-    private Long dentistaID;
+    @OneToOne
+    private Paciente paciente;
 }

@@ -1,18 +1,18 @@
 package com.dh.clinicaOdontologica.entity.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.sql.Timestamp;
 
-@Data
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class ConsultaDTO {
-    private String pacienteRG;
-    private String dentistaMatricula;
-    private Timestamp consultaData;
+    private String consultaID;
+    private Timestamp dataConsulta;
+    private DentistaDTO dentistaDTO;
+    private PacienteDTO pacienteDTO;
 }

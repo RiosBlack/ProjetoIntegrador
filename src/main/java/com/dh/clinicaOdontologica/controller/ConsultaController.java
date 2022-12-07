@@ -16,11 +16,16 @@ import java.util.List;
 @Controller
 public class ConsultaController {
     @Autowired
-    ConsultaService consultaService; //= new ConsultaService();
+    ConsultaService consultaService;
 
     @GetMapping()
-    public List<ConsultaDTO> buscar(){
-        return consultaService.buscar();
+    public List<ConsultaDTO> buscarTodasConsultas(){
+        return consultaService.buscarTodasConsultas();
+    }
+
+    @GetMapping("/BuscarConsultaEspecifica/{consultaID}")
+    public ResponseEntity buscarUnicaConsulta(@PathVariable String consultaID){
+        return consultaService.buscarUnicaConsulta(consultaID);
     }
 
     @PostMapping()
@@ -28,8 +33,8 @@ public class ConsultaController {
         return consultaService.salvar(consultaDTO);
     }
     
-    /*@DeleteMapping()
-    public deletar (@RequestBody @Valid ConsultaDTO consultaDTO){
-        return consultaService.deletar(consultaDTO);
-    }*/
+    @DeleteMapping()
+    public ResponseEntity deletar (@RequestParam("consultaID") String consultaID){
+        return consultaService.deletar(consultaID);
+    }
 }
