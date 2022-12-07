@@ -1,11 +1,14 @@
 package com.dh.clinicaOdontologica.controller;
 
-import com.dh.clinicaOdontologica.model.Consulta;
+import com.dh.clinicaOdontologica.entity.Consulta;
+import com.dh.clinicaOdontologica.entity.dto.ConsultaDTO;
 import com.dh.clinicaOdontologica.service.ConsultaService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -13,15 +16,25 @@ import java.util.List;
 @Controller
 public class ConsultaController {
     @Autowired
-    ConsultaService consultaService; //= new ConsultaService();
+    ConsultaService consultaService;
 
     @GetMapping()
-    public List<Consulta> buscar(){
-        return consultaService.buscar();
+    public List<ConsultaDTO> buscarTodasConsultas(){
+        return consultaService.buscarTodasConsultas();
+    }
+
+    @GetMapping("/BuscarConsultaEspecifica/{consultaID}")
+    public ResponseEntity buscarUnicaConsulta(@PathVariable String consultaID){
+        return consultaService.buscarUnicaConsulta(consultaID);
     }
 
     @PostMapping()
-    public Consulta salvar(@RequestBody Consulta consulta){
-        return consultaService.salvar(consulta);
+    public ResponseEntity salvar(@RequestBody @Valid ConsultaDTO consultaDTO){
+        return consultaService.salvar(consultaDTO);
+    }
+    
+    @DeleteMapping()
+    public ResponseEntity deletar (@RequestParam("consultaID") String consultaID){
+        return consultaService.deletar(consultaID);
     }
 }

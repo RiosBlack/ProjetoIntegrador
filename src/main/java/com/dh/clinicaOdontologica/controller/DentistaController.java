@@ -1,7 +1,8 @@
 package com.dh.clinicaOdontologica.controller;
 
-import com.dh.clinicaOdontologica.model.Dentista;
-import com.dh.clinicaOdontologica.model.dto.DentistaDTO;
+import com.dh.clinicaOdontologica.entity.Dentista;
+import com.dh.clinicaOdontologica.entity.dto.DentistaDTO;
+import com.dh.clinicaOdontologica.exception.CadastroInvalidoException;
 import com.dh.clinicaOdontologica.service.DentistaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -23,7 +24,7 @@ public class DentistaController {
     }
 
     @PostMapping()
-    public ResponseEntity salvar(@RequestBody Dentista dentista){
+    public ResponseEntity salvar(@RequestBody Dentista dentista) throws CadastroInvalidoException {
         return dentistaService.salvar(dentista);
     }
 }

@@ -1,20 +1,13 @@
 package com.dh.clinicaOdontologica.repository;
 
-import com.dh.clinicaOdontologica.model.Endereco;
+import com.dh.clinicaOdontologica.entity.Endereco;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
+import java.util.Optional;
 
-import java.util.ArrayList;
-import java.util.List;
 @Repository
-public class EnderecoRepository {
-    public static List<Endereco> listEndereco = new ArrayList<>();
+public interface EnderecoRepository extends JpaRepository<Endereco,Long> {
+    Optional<Endereco> findById(Long aLong);
 
-    public List<Endereco> buscar(){
-        return listEndereco;
-    }
-
-    public Endereco salvar(Endereco endereco) {
-        listEndereco.add(endereco);
-        return endereco;
-    }
 }
+

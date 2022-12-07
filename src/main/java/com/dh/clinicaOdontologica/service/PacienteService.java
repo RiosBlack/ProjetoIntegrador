@@ -1,6 +1,6 @@
 package com.dh.clinicaOdontologica.service;
 
-import com.dh.clinicaOdontologica.model.Paciente;
+import com.dh.clinicaOdontologica.entity.Paciente;
 import com.dh.clinicaOdontologica.repository.PacienteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,10 +12,10 @@ public class PacienteService {
     PacienteRepository pacienteRepository; //= new PacienteRepository();
 
     public List<Paciente> buscar(){
-        return pacienteRepository.buscar();
+        return pacienteRepository.findAll();
     }
 
     public Paciente salvar(Paciente paciente){
-        return  pacienteRepository.salvar(paciente);
+        return  pacienteRepository.save(paciente);
     }
 }
