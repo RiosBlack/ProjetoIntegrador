@@ -24,7 +24,7 @@ public class Paciente {
     private String sobrenome;
     @NotBlank
     @CPF
-    private Integer cpf;
+    private String cpf;
     //@DateTimeFormat(pattern = "dd/MM/yyyy")
     //private LocalDateTime dataRegistro;
     private Timestamp dataRegistro; //data que foi marcada a consulta

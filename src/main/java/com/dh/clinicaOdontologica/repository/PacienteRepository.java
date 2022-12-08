@@ -7,6 +7,6 @@ import java.util.Optional;
 
 @Repository
 public interface PacienteRepository extends JpaRepository<Paciente, Long> {
-    Optional<Paciente> findById(Long along);
+    Optional<Paciente> buscarPorCpf(String cpf);
 }
 

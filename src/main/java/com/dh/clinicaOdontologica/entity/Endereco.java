@@ -14,14 +14,21 @@ public class Endereco {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
+    @NotBlank
+    private String rua;
+
     private int numero;
+
     @NotBlank
     private Integer cep;
     @NotBlank
     private String cidade;
+    @NotBlank
     private String estado;
-    private String rua;
+
     private String complemento;
+
     @NotBlank
     @OneToOne
     @JoinColumn(name = "paciente_id")

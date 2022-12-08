@@ -23,7 +23,7 @@ public class PacienteDTO {
     private int id;
     private String nome;
     private String sobrenome;
-    private Integer cpf;
+    private String cpf;
     private Timestamp dataRegistro;
     private List<Consulta> consultas;
 }
