@@ -43,7 +43,7 @@ public class ConsultaService {
 
     public ResponseEntity buscarUnicaConsulta(String consultaID){
         ObjectMapper mapper = new ObjectMapper();
-        Optional<Consulta> idConsultaColetado = consultaRepository.buscarConsultaID(consultaID);
+        Optional<Consulta> idConsultaColetado = consultaRepository.findByConsultaID(consultaID);
         if (idConsultaColetado.isEmpty()){
             return new ResponseEntity("Consulta não encontrada",HttpStatus.BAD_REQUEST);
         }
@@ -65,7 +65,7 @@ public class ConsultaService {
    }
 
     public ResponseEntity deletar(String consultaID) {
-        Optional<Consulta> consulta = consultaRepository.buscarConsultaID(consultaID);
+        Optional<Consulta> consulta = consultaRepository.findByConsultaID(consultaID);
         if (consulta.isEmpty()){
             return new ResponseEntity("Consulta Inexistente",HttpStatus.BAD_REQUEST);
         }

@@ -6,7 +6,8 @@ import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import java.sql.Timestamp;
 
-@Data
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
@@ -14,19 +15,16 @@ import java.sql.Timestamp;
 public class Consulta {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
-
-    @Column (nullable = false, unique = true)
+    private Long id;
     private String consultaID;
-
     @Column (nullable = false)
     private Timestamp dataConsulta;
 
     @OneToOne
-    @JoinColumn(name = "dentista-id")
-    private Dentista dentista;
-
-    @OneToOne
     @JoinColumn(name = "paciente-id")
     private Paciente paciente;
+
+    @OneToOne
+    @JoinColumn(name = "dentista-id")
+    private Dentista dentista;
 }

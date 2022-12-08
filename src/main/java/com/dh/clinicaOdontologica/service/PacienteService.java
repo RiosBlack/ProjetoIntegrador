@@ -48,7 +48,7 @@ public class PacienteService {
 
     public ResponseEntity buscarPacienteCpf(String cpf) {
         ObjectMapper mapper = new ObjectMapper();
-        Optional<Paciente> paciente = pacienteRepository.buscarPorCpf(cpf);
+        Optional<Paciente> paciente = pacienteRepository.findByCpf(cpf);
         if (paciente.isEmpty()){
             return new ResponseEntity("Paciente não encontrado", HttpStatus.BAD_REQUEST);
         }
@@ -58,7 +58,7 @@ public class PacienteService {
     }
 
     public ResponseEntity atualizarPacienteTotal(PacienteDTO pacienteDTO) {
-        Optional<Paciente> pacienteCPF = pacienteRepository.buscarPorCpf(pacienteDTO.getCpf());
+        Optional<Paciente> pacienteCPF = pacienteRepository.findByCpf(pacienteDTO.getCpf());
         if (pacienteCPF.isEmpty()){
             return new ResponseEntity("O paciente não foi encontrado", HttpStatus.BAD_REQUEST);
         }
@@ -71,7 +71,7 @@ public class PacienteService {
 
 
     public ResponseEntity atualizarPacienteParcial(PacienteDTO pacienteDTO) {
-        Optional<Paciente> pacienteCPF = pacienteRepository.buscarPorCpf(pacienteDTO.getCpf());
+        Optional<Paciente> pacienteCPF = pacienteRepository.findByCpf(pacienteDTO.getCpf());
         if (pacienteCPF.isEmpty()){
             return new ResponseEntity("O paciente não foi encontrado", HttpStatus.BAD_REQUEST);
         }
@@ -87,7 +87,7 @@ public class PacienteService {
     }
 
     public ResponseEntity deletar(String cpf) {
-        Optional<Paciente> pacienteCPF = pacienteRepository.buscarPorCpf(cpf);
+        Optional<Paciente> pacienteCPF = pacienteRepository.findByCpf(cpf);
         if (pacienteCPF.isEmpty()){
             return new ResponseEntity("Paciente não encontrado", HttpStatus.BAD_REQUEST);
         }

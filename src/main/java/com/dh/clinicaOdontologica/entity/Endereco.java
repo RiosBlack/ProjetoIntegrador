@@ -5,7 +5,8 @@ import lombok.*;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 
-@Data
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
@@ -13,26 +14,14 @@ import javax.validation.constraints.NotBlank;
 public class Endereco {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
-
-    @NotBlank
-    private String rua;
-
-    private int numero;
-
-    @NotBlank
-    private Integer cep;
-    @NotBlank
+    private Long id;
+    @Column(nullable = false, length = 9)
+    private String cep;
+    @Column(nullable = false)
     private String cidade;
-    @NotBlank
     private String estado;
-
+    private String rua;
     private String complemento;
-
-    @NotBlank
-    @OneToOne
-    @JoinColumn(name = "paciente_id")
-    private Paciente paciente;
 
 }
 

@@ -9,7 +9,8 @@ import javax.validation.constraints.NotBlank;
 import java.sql.Timestamp;
 import java.util.List;
 
-@Data
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
@@ -17,18 +18,20 @@ import java.util.List;
 public class Paciente {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
-    @NotBlank
+    private Long id;
+    @Column(nullable = false, length = 100)
     private String nome;
-    @NotBlank
+    @Column(nullable = false, length = 100)
     private String sobrenome;
-    @NotBlank
+    @Column(nullable = false)
     @CPF
-    private String cpf;
+    private Integer cpf;
     //@DateTimeFormat(pattern = "dd/MM/yyyy")
     //private LocalDateTime dataRegistro;
+    @Column(nullable = false)
     private Timestamp dataRegistro; //data que foi marcada a consulta
-    @ManyToOne
-    @JoinColumn(name = "consulta_id")
-    private Consulta consulta;
+
+    @OneToOne
+    @JoinColumn(name = "endereco_id")
+    private Endereco endereco;
 }
