@@ -7,6 +7,7 @@ import com.dh.clinicaOdontologica.entity.dto.ConsultaDTO;
 import com.dh.clinicaOdontologica.repository.ConsultaRepository;
 import com.dh.clinicaOdontologica.repository.PacienteRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import lombok.extern.log4j.Log4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -72,5 +73,4 @@ public class ConsultaService {
         return new ResponseEntity("Consulta excluida com sucesso", HttpStatus.OK);
     }
 
-    //public ResponseEntity deletar (ConsultaDTO consultaDTO){ return consultaRepository.delete();}
 }

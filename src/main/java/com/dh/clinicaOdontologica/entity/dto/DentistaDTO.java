@@ -2,21 +2,21 @@ package com.dh.clinicaOdontologica.entity.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.Id;
+import javax.validation.constraints.NotBlank;
 
-@Data
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class DentistaDTO {
-    @JsonIgnore
-    @Id
-    private int id;
-    private Integer matricula;
+    @NotBlank
+    private String matricula;
+    @NotBlank
     private String nome;
+    @NotBlank
     private String sobrenome;
 }

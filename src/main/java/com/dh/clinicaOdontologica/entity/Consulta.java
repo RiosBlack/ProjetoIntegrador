@@ -23,8 +23,10 @@ public class Consulta {
     private Timestamp dataConsulta;
 
     @OneToOne
+    @JoinColumn(name = "dentista-id")
     private Dentista dentista;
 
     @OneToOne
+    @JoinColumn(name = "paciente-id")
     private Paciente paciente;
 }

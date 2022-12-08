@@ -13,6 +13,6 @@ import java.sql.Timestamp;
 public class ConsultaDTO {
     private String consultaID;
     private Timestamp dataConsulta;
-    private DentistaDTO dentistaDTO;
-    private PacienteDTO pacienteDTO;
+    private DentistaDTO dentista;
+    private PacienteDTO paciente;
 }
