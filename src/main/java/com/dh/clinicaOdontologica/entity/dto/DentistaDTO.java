@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
 
+import javax.persistence.Column;
 import javax.persistence.Id;
 import javax.validation.constraints.NotBlank;
 
@@ -13,10 +14,8 @@ import javax.validation.constraints.NotBlank;
 @NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class DentistaDTO {
-    @NotBlank
+    private Long id;
     private String matricula;
-    @NotBlank
     private String nome;
-    @NotBlank
     private String sobrenome;
 }

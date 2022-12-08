@@ -1,11 +1,10 @@
 package com.dh.clinicaOdontologica.entity;
 
 import lombok.*;
-
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
 
-@Data
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
@@ -13,19 +12,16 @@ import javax.validation.constraints.NotBlank;
 public class Endereco {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
     private int numero;
-    @NotBlank
-    private Integer cep;
-    @NotBlank
+    @Column(nullable = false, length = 9)
+    private String cep;
+    @Column(nullable = false)
     private String cidade;
     private String estado;
     private String rua;
     private String complemento;
-    @NotBlank
-    @OneToOne
-    @JoinColumn(name = "paciente_id")
-    private Paciente paciente;
+
 
 }
 

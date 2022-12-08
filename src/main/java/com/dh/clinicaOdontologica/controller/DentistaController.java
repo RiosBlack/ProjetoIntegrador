@@ -14,7 +14,6 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/dentista")
-@Controller
 public class DentistaController {
     @Autowired
     DentistaService dentistaService;
