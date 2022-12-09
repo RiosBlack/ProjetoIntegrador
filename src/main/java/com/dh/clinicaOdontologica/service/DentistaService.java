@@ -36,7 +36,7 @@ public class DentistaService {
         ObjectMapper mapper = new ObjectMapper();
         Dentista dentista = mapper.convertValue(dentistaDTO, Dentista.class);
         try {
-            Dentista dentistaRepoSalvo = dentistaRepository.save(dentista);
+            dentistaRepository.save(dentista);
             return new ResponseEntity("Dentista " + dentista.getNome() + " Salvo",HttpStatus.CREATED);
         } catch (Exception e) {
             return new ResponseEntity("Erro ao cadastrar o dentista",HttpStatus.BAD_REQUEST);
