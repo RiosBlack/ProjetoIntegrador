@@ -2,12 +2,10 @@ package com.dh.clinicaOdontologica.service;
 
 
 import com.dh.clinicaOdontologica.entity.Consulta;
-import com.dh.clinicaOdontologica.entity.Paciente;
 import com.dh.clinicaOdontologica.entity.dto.ConsultaDTO;
 import com.dh.clinicaOdontologica.repository.ConsultaRepository;
 import com.dh.clinicaOdontologica.repository.PacienteRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import lombok.extern.log4j.Log4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

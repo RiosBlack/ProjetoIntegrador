@@ -3,7 +3,6 @@ package com.dh.clinicaOdontologica.entity;
 import lombok.*;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
 import java.sql.Timestamp;
 
 @Getter
