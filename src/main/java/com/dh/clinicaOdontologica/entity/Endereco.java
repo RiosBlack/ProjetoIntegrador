@@ -19,6 +19,7 @@ public class Endereco {
     private String cep;
     @Column(nullable = false)
     private String cidade;
+    
     private String estado;
     private String rua;
     private String complemento;

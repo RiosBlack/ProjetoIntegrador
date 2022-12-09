@@ -39,7 +39,7 @@ public class EnderecoService {
         Endereco endereco = mapper.convertValue(enderecoDTO, Endereco.class);
         try{
             log.info("Endereço criado com sucesso");
-            Endereco endereco1 = enderecoRepository.save(endereco);
+            enderecoRepository.save(endereco);
             return new ResponseEntity("Endereço criado com sucesso.", HttpStatus.OK);
         } catch (Exception e){
             log.info("Erro ao cadastrar endereço.");

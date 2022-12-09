@@ -3,7 +3,6 @@ package com.dh.clinicaOdontologica.entity;
 import lombok.*;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
 import java.sql.Timestamp;
 
 @Getter
@@ -21,10 +20,10 @@ public class Consulta {
     private Timestamp dataConsulta;
 
     @OneToOne
-    @JoinColumn(name = "paciente-id")
+    @JoinColumn(name = "paciente_id")
     private Paciente paciente;
 
     @OneToOne
-    @JoinColumn(name = "dentista-id")
+    @JoinColumn(name = "dentista_id")
     private Dentista dentista;
 }
