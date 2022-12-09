@@ -5,6 +5,7 @@ import lombok.*;
 
 import java.sql.Timestamp;
 
+@Builder
 @Getter
 @Setter
 @AllArgsConstructor

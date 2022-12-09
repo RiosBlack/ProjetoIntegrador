@@ -13,19 +13,14 @@ import javax.validation.constraints.NotBlank;
 public class Dentista {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
 
-    @NotBlank
-    @Column(nullable = false, unique = true)
+    @Column(nullable = false, unique = true, length = 10)
     private String matricula;
 
-
-    @NotBlank
     @Column(nullable = false, length = 100)
     private String nome;
 
-
-    @NotBlank
     @Column(nullable = false, length = 100)
     private String sobrenome;
 }

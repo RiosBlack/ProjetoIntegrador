@@ -43,7 +43,7 @@ public class DentistaService {
         }
     }
     public ResponseEntity deletar(String matricula){
-        Optional<Dentista> dentista = Optional.ofNullable(dentistaRepository.buscarMatricula(matricula));
+        Optional<Dentista> dentista = Optional.ofNullable(dentistaRepository.findByMatricula(matricula));
         if(dentista.isEmpty()){
             log.info("Matricula não encontrada");
             return new ResponseEntity("Matricula do dentista não encontrado",HttpStatus.NOT_FOUND);
@@ -55,7 +55,7 @@ public class DentistaService {
 
     public ResponseEntity buscarDentistaMatricula(String matricula) {
        ObjectMapper mapper = new ObjectMapper();
-       Optional<Dentista> dentista = Optional.ofNullable(dentistaRepository.buscarMatricula(matricula));
+       Optional<Dentista> dentista = Optional.ofNullable(dentistaRepository.findByMatricula(matricula));
        if (dentista.isEmpty()){
            log.info("Matricula não encontrada");
            return new ResponseEntity("Matricula do dentista não encontrado", HttpStatus.BAD_REQUEST);
@@ -67,7 +67,7 @@ public class DentistaService {
 
 
     public ResponseEntity atulizarDentistaParcial(DentistaDTO dentistaDTO) {
-        Optional<Dentista> dentista = Optional.ofNullable(dentistaRepository.buscarMatricula(dentistaDTO.getMatricula()));
+        Optional<Dentista> dentista = Optional.ofNullable(dentistaRepository.findByMatricula(dentistaDTO.getMatricula()));
         if (dentista.isEmpty()){
             return new ResponseEntity("Matricula do dentista não encontrado",HttpStatus.BAD_REQUEST);
         }
