@@ -4,11 +4,11 @@ import com.dh.clinicaOdontologica.entity.Dentista;
 import com.dh.clinicaOdontologica.entity.dto.DentistaDTO;
 import com.dh.clinicaOdontologica.repository.DentistaRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.apache.log4j.Logger;
 
 import java.util.ArrayList;
 import java.util.List;

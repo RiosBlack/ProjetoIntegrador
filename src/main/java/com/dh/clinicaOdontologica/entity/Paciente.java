@@ -5,9 +5,7 @@ import lombok.*;
 import org.hibernate.validator.constraints.br.CPF;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
 import java.sql.Timestamp;
-import java.util.List;
 
 @Getter
 @Setter
