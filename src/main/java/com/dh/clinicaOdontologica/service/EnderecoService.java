@@ -1,6 +1,7 @@
 package com.dh.clinicaOdontologica.service;
 
 import com.dh.clinicaOdontologica.entity.Endereco;
+import com.dh.clinicaOdontologica.entity.Paciente;
 import com.dh.clinicaOdontologica.entity.dto.EnderecoDTO;
 import com.dh.clinicaOdontologica.repository.EnderecoRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -10,6 +11,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.sql.Timestamp;
+import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -46,6 +49,11 @@ public class EnderecoService {
             return new ResponseEntity("Erro ao cadastrar o endereço", HttpStatus.BAD_REQUEST);
         }
     }
+
+//    public Endereco salvar(Endereco endereco) {
+//        Endereco enderecoSalvo = enderecoRepository.save(endereco);
+//        return enderecoSalvo;
+//    }
 
     public ResponseEntity deletar(Long id) {
         log.info("Buscando ID do endereço.");
