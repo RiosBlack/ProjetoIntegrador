@@ -28,23 +28,30 @@ public class PacienteService {
             PacienteDTO pacienteDTO = mapper.convertValue(paciente, PacienteDTO.class);
                 listPacienteDTO.add(pacienteDTO);
             }
-
         return listPacienteDTO;
     }
 
 
 
-    public ResponseEntity salvar(PacienteDTO pacienteDTO){
-        ObjectMapper mapper = new ObjectMapper();
-        Paciente paciente = mapper.convertValue(pacienteDTO, Paciente.class);
-        try{
-            paciente.setDataRegistro(Timestamp.from(Instant.now()));
-            Paciente paciente1 = pacienteRepository.save(paciente);
-            return new ResponseEntity("O paciente " + paciente1.getNome() + " foi salvo", HttpStatus.CREATED);
-        } catch (Exception e){
-            return new ResponseEntity("Erro ao cadastrar paciente", HttpStatus.BAD_REQUEST);
-        }
+//    public ResponseEntity<PacienteDTO> salvar(PacienteDTO pacienteDTO){
+//        ObjectMapper mapper = new ObjectMapper();
+//        Paciente paciente = mapper.convertValue(pacienteDTO, Paciente.class);
+//        try{
+//            paciente.setDataRegistro(Timestamp.from(Instant.now()));
+//            Paciente pacienteSalvo = pacienteRepository.save(paciente);
+//            return new ResponseEntity("O paciente " + pacienteSalvo.getNome() + " foi salvo", HttpStatus.CREATED);
+//        } catch (Exception e){
+//            return new ResponseEntity("Erro ao cadastrar paciente", HttpStatus.BAD_REQUEST);
+//        }
+//    }
+
+    public Paciente salvar(Paciente paciente) {
+        paciente.setDataRegistro(Timestamp.from(Instant.now()));
+        Paciente pacienteSalvo = pacienteRepository.save(paciente);
+        return pacienteSalvo;
     }
+
+
 
     public ResponseEntity buscarPacienteCpf(String cpf) {
         ObjectMapper mapper = new ObjectMapper();
@@ -54,7 +61,7 @@ public class PacienteService {
         }
         Paciente pacienteGet = paciente.get();
         PacienteDTO pacienteDTO = mapper.convertValue(pacienteGet, PacienteDTO.class);
-        return new ResponseEntity(pacienteDTO, HttpStatus.OK);
+        return new ResponseEntity(pacienteDTO, HttpStatus.CREATED);
     }
 
     public ResponseEntity atualizarPacienteTotal(PacienteDTO pacienteDTO) {
@@ -71,6 +78,7 @@ public class PacienteService {
 
 
     public ResponseEntity atualizarPacienteParcial(PacienteDTO pacienteDTO) {
+        ObjectMapper mapper = new ObjectMapper();
         Optional<Paciente> pacienteCPF = pacienteRepository.findByCpf(pacienteDTO.getCpf());
         if (pacienteCPF.isEmpty()){
             return new ResponseEntity("O paciente não foi encontrado", HttpStatus.BAD_REQUEST);
@@ -94,4 +102,6 @@ public class PacienteService {
         pacienteRepository.deleteById(Long.valueOf(pacienteCPF.get().getId()));
         return new ResponseEntity("O paciente foi excluido.", HttpStatus.OK);
     }
+
+
 }
