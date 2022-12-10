@@ -19,8 +19,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Autowired
     AutenticacaoService autenticacaoService;
 
-    //@Autowired
-  //  AutenticacaoViaTokenFilter autenticacaoViaTokenFilter;
+    @Autowired
+    AutenticacaoViaTokenFilter autenticacaoViaTokenFilter;
     @Bean
     @Override
     protected AuthenticationManager authenticationManager() throws Exception {
@@ -33,11 +33,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers(HttpMethod.GET,"/consulta").permitAll()
                 .antMatchers(HttpMethod.POST, "/auth").permitAll()
-
                 .anyRequest().authenticated()
-
-                .and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-               //.and().addFilterBefore(autenticacaoViaTokenFilter, UsernamePasswordAuthenticationFilter.class);
+                .and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                .and().addFilterBefore(autenticacaoViaTokenFilter, UsernamePasswordAuthenticationFilter.class);
     }
 
     @Override

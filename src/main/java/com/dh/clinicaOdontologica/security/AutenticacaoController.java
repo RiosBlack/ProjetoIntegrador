@@ -1,4 +1,4 @@
-package com.dh.clinicaOdontologica.controller;
+package com.dh.clinicaOdontologica.security;
 
 import com.dh.clinicaOdontologica.entity.dto.TokenDTO;
 import com.dh.clinicaOdontologica.entity.dto.UsuarioDTO;
