@@ -7,6 +7,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.sql.Timestamp;
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -34,4 +36,5 @@ public class ConsultaController {
     public ResponseEntity deletar (@RequestParam("consultaID") String consultaID){
         return consultaService.deletar(consultaID);
     }
+
 }

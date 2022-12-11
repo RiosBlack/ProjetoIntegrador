@@ -3,6 +3,7 @@ package com.dh.clinicaOdontologica.entity;
 import lombok.*;
 
 import javax.persistence.*;
+import javax.validation.constraints.Pattern;
 
 @Getter
 @Setter
@@ -18,6 +19,7 @@ public class Endereco {
     @Column(nullable = false, length = 9)
     private String cep;
     @Column(nullable = false)
+    @Pattern(regexp = "[A-Z]+(.)*")
     private String cidade;
     
     private String estado;

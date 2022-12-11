@@ -5,6 +5,8 @@ import lombok.*;
 import org.hibernate.validator.constraints.br.CPF;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
 import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -23,11 +25,18 @@ public class Paciente {
     private Long id;
 
     @Column(nullable = false, length = 100)
+    @Pattern(regexp = "[A-Z]+(.)*", message = "Primeira letra maiuscula")
+    @NotBlank(message = "Campo não informado")
     private String nome;
+
     @Column(nullable = false, length = 100)
+    @Pattern(regexp = "[A-Z]+(.)*", message = "Primeira letra maiuscula")
+    @NotBlank(message = "Campo não informado")
     private String sobrenome;
-    @Column(nullable = false)
-    @CPF
+
+    @Column(nullable = false, unique = true)
+    @NotBlank(message = "Campo não informado")
+    @CPF(message = "Campo inválido")
     private String cpf;
     //@DateTimeFormat(pattern = "dd/MM/yyyy")
     //private LocalDateTime dataRegistro;

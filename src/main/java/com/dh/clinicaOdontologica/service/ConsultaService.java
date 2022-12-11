@@ -12,7 +12,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -52,11 +54,20 @@ public class ConsultaService {
    public ResponseEntity salvar(ConsultaDTO consultaDTO) {
        ObjectMapper mapper = new ObjectMapper();
        Consulta consulta = mapper.convertValue(consultaDTO, Consulta.class);
+       //início para rodar depois para ver se confirma a data
+       Timestamp date = new Timestamp(System.currentTimeMillis());
+
        try {
            consultaRepository.save(consulta);
            log.info("Consulta salva!");
            return new ResponseEntity("Consulta salva", HttpStatus.CREATED);
+
        } catch (Exception e) {
+           if (consulta.getDataConsulta().before(date)){
+               log.error("Erro ao informar data da consulta");
+               return new ResponseEntity("Informe uma data válida", HttpStatus.BAD_REQUEST);
+           }
+           //final
             log.error("Erro ao salvar consulta");
             return new ResponseEntity("Erro ao salvar consulta", HttpStatus.BAD_REQUEST);
        }
