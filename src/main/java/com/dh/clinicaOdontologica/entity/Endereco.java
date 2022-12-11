@@ -26,17 +26,14 @@ public class Endereco {
     private int numero;
     private String complemento;
 
-    @OneToMany
-    @JoinTable(name = "paciente_endereco",
-    joinColumns = @JoinColumn(name="paciente_id"),
-    inverseJoinColumns = @JoinColumn(name="enderecos_id"))
-    private List<Paciente> pacientes;
+//    @OneToMany
+//    @JoinTable(name = "paciente_endereco",
+//    joinColumns = @JoinColumn(name="paciente_id"),
+//    inverseJoinColumns = @JoinColumn(name="enderecos_id"))
+//    private List<Paciente> pacientes;
 
-    public void adicionaPaciente(Paciente paciente) {
-        pacientes.add(paciente);
-    }
-
-
+    @OneToMany(targetEntity = Paciente.class)
+    private List pacienteLista;
 }
 
 
