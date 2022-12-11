@@ -34,7 +34,8 @@ public class Paciente {
     @Column(nullable = false)
     private Timestamp dataRegistro; //data que foi marcada a consulta
 
-    @OneToOne
-    @JoinColumn(name = "endereco_id")
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "endereco_id", referencedColumnName = "id")
+
     private Endereco endereco;
 }

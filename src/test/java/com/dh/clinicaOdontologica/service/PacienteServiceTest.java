@@ -26,15 +26,25 @@ public class PacienteServiceTest {
 
     @Test
     void salvar(){
-//        EnderecoDTO endereco = new EnderecoDTO();
-        PacienteDTO paciente = new PacienteDTO();
-        mapper.registerModule(new JavaTimeModule());
+
+//        Endereco endereco = new Endereco();
+//        endereco.setRua("Rua do cabeludo");
+//        endereco.setNumero(50);
+//        endereco.setCidade("Recife");
+//        endereco.setEstado("PE");
+//        endereco.setCep("50370-890");
+
+//        Endereco enderecoSalvo = service.salvar(endereco);
+//        System.out.println(endereco);
+
+        Paciente paciente = new Paciente();
         paciente.setNome("Laiane");
         paciente.setSobrenome("Barbalho");
         paciente.setCpf("06848748498");//
-        paciente.setDataRegistro(LocalDate.from(LocalDateTime.now()));
+        paciente.setDataRegistro(Timestamp.from(Instant.now()));
+        paciente.getEndereco();
 
-//        ResponseEntity<PacienteDTO> pacienteSalvo = service.salvar(paciente);
+        Paciente pacienteSalvo = service.salvar(paciente);
 
         System.out.println(paciente);
 
