@@ -19,7 +19,7 @@ public class Endereco {
     @Column(nullable = false, length = 9)
     private String cep;
     @Column(nullable = false)
-    @Pattern(regexp = "[A-Z]+(.)*")
+//    @Pattern(regexp = "[A-Z]+(.)*")
     private String cidade;
     
     private String estado;

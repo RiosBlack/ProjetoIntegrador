@@ -25,12 +25,12 @@ public class Paciente {
     private Long id;
 
     @Column(nullable = false, length = 100)
-    @Pattern(regexp = "[A-Z]+(.)*", message = "Primeira letra maiuscula")
+//    @Pattern(regexp = "[A-Z]+(.)*", message = "Primeira letra maiuscula")
     @NotBlank(message = "Campo não informado")
     private String nome;
 
     @Column(nullable = false, length = 100)
-    @Pattern(regexp = "[A-Z]+(.)*", message = "Primeira letra maiuscula")
+//    @Pattern(regexp = "[A-Z]+(.)*", message = "Primeira letra maiuscula")
     @NotBlank(message = "Campo não informado")
     private String sobrenome;
 
