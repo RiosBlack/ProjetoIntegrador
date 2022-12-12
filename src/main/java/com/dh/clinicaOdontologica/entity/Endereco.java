@@ -1,5 +1,6 @@
 package com.dh.clinicaOdontologica.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
@@ -12,12 +13,12 @@ import java.util.List;
 @ToString
 @Entity
 @Table
-public class Endereco {
+public class Endereco{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false, length = 10)
+//    @Column(nullable = false, length = 10)
     private String cep;
     @Column(nullable = false)
     private String cidade;
@@ -26,14 +27,13 @@ public class Endereco {
     private int numero;
     private String complemento;
 
-//    @OneToMany
-//    @JoinTable(name = "paciente_endereco",
-//    joinColumns = @JoinColumn(name="paciente_id"),
-//    inverseJoinColumns = @JoinColumn(name="enderecos_id"))
-//    private List<Paciente> pacientes;
+    @JsonIgnore // teste laiane
+    @OneToMany
+    private List<Paciente> pacientes;
 
-    @OneToMany(targetEntity = Paciente.class)
-    private List pacienteLista;
+
+
+
 }
 
 

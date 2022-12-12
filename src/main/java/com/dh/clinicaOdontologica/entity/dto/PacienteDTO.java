@@ -26,18 +26,18 @@ public class PacienteDTO {
     private String cpf;
 
     private Timestamp dataHoraRegistro;
-    private LocalDate dataRegistro;
-    private LocalTime horaRegistro;
+//    private LocalDate dataRegistro;
+//    private LocalTime horaRegistro;
 
     @JsonIgnore
     private List<Consulta> consultas;
 
-    public LocalDate getDataRegistro() {
-        return dataHoraRegistro.toLocalDateTime().toLocalDate();
-    }
-
-    public LocalTime getHoraRegistro(){
-        return dataHoraRegistro.toLocalDateTime().toLocalTime();
-    }
+//    public LocalDate getDataRegistro() {
+//        return dataHoraRegistro.toLocalDateTime().toLocalDate();
+//    }
+//
+//    public LocalTime getHoraRegistro(){
+//        return dataHoraRegistro.toLocalDateTime().toLocalTime();
+//    }
 
 }

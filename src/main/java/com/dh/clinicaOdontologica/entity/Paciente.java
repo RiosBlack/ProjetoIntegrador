@@ -5,6 +5,7 @@ import lombok.*;
 import org.hibernate.validator.constraints.br.CPF;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -16,7 +17,8 @@ import java.time.LocalTime;
 @ToString
 @Entity
 @Table
-public class Paciente {
+public class Paciente implements Serializable {
+    private static final long serialVersionUID= 1L; //teste laiane
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="id")
@@ -32,9 +34,9 @@ public class Paciente {
     //@DateTimeFormat(pattern = "dd/MM/yyyy")
     //private LocalDateTime dataRegistro;
     @Column(nullable = false)
-    private Timestamp dataRegistro; //data que foi marcada a consulta
+    private Timestamp dataRegistro;
 
-    @ManyToOne //(cascade = CascadeType.ALL)
-    //@JoinColumn(name = "endereco_id", referencedColumnName = "id")
+    @ManyToOne
+    @JoinColumn(name="endereco_id")
     private Endereco endereco;
 }

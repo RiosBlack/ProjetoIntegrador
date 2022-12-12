@@ -11,6 +11,7 @@ import java.sql.Timestamp;
 @NoArgsConstructor
 @ToString
 @Entity
+@Table
 public class Consulta {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

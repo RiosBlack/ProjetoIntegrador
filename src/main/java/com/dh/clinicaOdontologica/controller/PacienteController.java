@@ -57,10 +57,18 @@ public class PacienteController {
         return pacienteService.atualizarPacienteTotal(pacienteDTO);
     }
 
-    @PatchMapping()
-    public ResponseEntity atualizarPacienteParcial(@RequestBody PacienteDTO pacienteDTO) {
-        return pacienteService.atualizarPacienteParcial(pacienteDTO);
+//    @PatchMapping()
+//    public ResponseEntity atualizarPacienteParcial(@RequestBody PacienteDTO pacienteDTO) {
+//        return pacienteService.atualizarPacienteParcial(pacienteDTO);
+//    }
+@PatchMapping()
+public ResponseEntity atualizarPacienteParcial(@RequestBody @Valid PacienteDTO pacienteDTO){
+    PacienteDTO pacienteDTOAlterado = pacienteService.atualizarPacienteParcial(pacienteDTO);
+    if(pacienteDTOAlterado == null){
+        return new ResponseEntity("Erro ao alterar paciente", HttpStatus.NOT_FOUND);
     }
+    return new ResponseEntity("Paciente alterado com sucesso", HttpStatus.OK);
+}
 
     @DeleteMapping()
     public  ResponseEntity deletar(@RequestParam("cpf") String cpf){
