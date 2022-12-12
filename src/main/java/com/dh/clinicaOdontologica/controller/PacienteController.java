@@ -2,10 +2,11 @@ package com.dh.clinicaOdontologica.controller;
 
 import com.dh.clinicaOdontologica.entity.Paciente;
 import com.dh.clinicaOdontologica.entity.dto.PacienteDTO;
+import com.dh.clinicaOdontologica.exception.CadastroInvalidoException;
 import com.dh.clinicaOdontologica.service.PacienteService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -27,9 +28,28 @@ public class PacienteController {
         return pacienteService.buscarPacienteCpf(cpf);
     }
 
+//    @PostMapping()
+//    public ResponseEntity<PacienteDTO> salvar(@RequestBody @Valid PacienteDTO pacienteDTO){
+//        return pacienteService.salvar(pacienteDTO);
+//    }
+//    @PostMapping
+//    public ResponseEntity<PacienteDTO> salvar( @RequestBody @Valid PacienteDTO pacienteDTO) throws CadastroInvalidoException {
+//        try{
+//            PacienteDTO pacienteSalvo = pacienteService.salvar(pacienteDTO).getBody();
+//            return new ResponseEntity( "Paciente "+pacienteSalvo.getNome()+" criado com sucesso", HttpStatus.CREATED);
+//        }catch (Exception e){
+//            throw new CadastroInvalidoException("Erro ao cadastrar Paciente");
+//        }
+//    }
+
     @PostMapping()
-    public ResponseEntity salvar(@RequestBody @Valid PacienteDTO pacienteDTO){
-        return pacienteService.salvar(pacienteDTO);
+    public ResponseEntity salvar( @RequestBody @Valid Paciente paciente) throws CadastroInvalidoException {
+        try{
+            Paciente pacienteSalvo = pacienteService.salvar(paciente);
+            return new ResponseEntity( "Paciente "+pacienteSalvo.getNome()+" criado com sucesso", HttpStatus.CREATED);
+        }catch (Exception e){
+            throw new CadastroInvalidoException("Erro ao cadastrar paciente");
+        }
     }
 
     @PutMapping()

@@ -3,7 +3,6 @@ package com.dh.clinicaOdontologica.entity;
 import lombok.*;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
 
 @Getter
 @Setter
@@ -11,6 +10,7 @@ import javax.validation.constraints.NotBlank;
 @NoArgsConstructor
 @ToString
 @Entity
+@Table
 public class Endereco {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

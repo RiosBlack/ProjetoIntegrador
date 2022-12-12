@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.security.core.GrantedAuthority;
 
 import javax.persistence.*;
 
@@ -12,17 +13,22 @@ import javax.persistence.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class Dentista {
+public class Perfil implements GrantedAuthority {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false, unique = true, length = 10)
-    private String matricula;
+    @Column(unique = true, nullable = false)
+    private String descricao;
 
-    @Column(nullable = false, length = 100)
-    private String nome;
+    @Override
+    public String getAuthority() {
 
-    @Column(nullable = false, length = 100)
-    private String sobrenome;
+        return this.getDescricao();
+    }
 }
+
+
+
+
