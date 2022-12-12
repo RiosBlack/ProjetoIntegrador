@@ -37,7 +37,7 @@ public class ConsultaController {
 public ResponseEntity salvar( @RequestBody @Valid Consulta consulta) throws CadastroInvalidoException {
     try{
         Consulta consultaSalva = consultaService.salvar(consulta);
-        return new ResponseEntity( "Consulta marcada para o paciente: " + consultaSalva.getPaciente()+"na data e hora: "+consultaSalva.getDataConsulta()+ " com o dentista: " + consultaSalva.getDentista(), HttpStatus.CREATED);
+        return new ResponseEntity( "Consulta marcada para o paciente: "+consultaSalva.getDataConsulta(), HttpStatus.CREATED);
     }catch (Exception e){
         throw new CadastroInvalidoException("Erro ao marcar consulta");
     }
