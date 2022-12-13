@@ -46,11 +46,6 @@ public class DentistaService {
         }
     }
 
-//    public Dentista salvar(Dentista dentista) {
-//        Dentista dentistaSalvo = dentistaRepository.save(dentista);
-//        return dentistaSalvo;
-//    }
-
     public ResponseEntity buscarDentistaMatricula(String matricula) {
         ObjectMapper mapper = new ObjectMapper();
         Dentista dentistaMatricula = dentistaRepository.findByMatricula(matricula);

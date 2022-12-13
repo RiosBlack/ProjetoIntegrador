@@ -31,10 +31,7 @@ public class DentistaController {
         return dentistaService.buscarDentistaMatricula(matricula);
     }
 
-//    @PostMapping()
-//    public ResponseEntity salvar(@RequestBody DentistaDTO dentistaDTO) {
-//        return dentistaService.salvar(dentistaDTO);
-//    }
+
     @PostMapping()
     public ResponseEntity salvar( @RequestBody @Valid DentistaDTO dentista) throws CadastroInvalidoException {
         return dentistaService.salvar(dentista);
