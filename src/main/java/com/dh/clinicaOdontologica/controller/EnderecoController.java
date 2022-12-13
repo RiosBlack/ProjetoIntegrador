@@ -1,6 +1,5 @@
 package com.dh.clinicaOdontologica.controller;
 
-import com.dh.clinicaOdontologica.entity.Endereco;
 import com.dh.clinicaOdontologica.entity.dto.EnderecoDTO;
 import com.dh.clinicaOdontologica.exception.CadastroInvalidoException;
 import com.dh.clinicaOdontologica.service.EnderecoService;

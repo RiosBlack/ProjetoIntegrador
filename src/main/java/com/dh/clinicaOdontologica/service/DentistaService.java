@@ -1,7 +1,6 @@
 package com.dh.clinicaOdontologica.service;
 
 import com.dh.clinicaOdontologica.entity.Dentista;
-import com.dh.clinicaOdontologica.entity.Paciente;
 import com.dh.clinicaOdontologica.entity.dto.DentistaDTO;
 import com.dh.clinicaOdontologica.repository.DentistaRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -9,10 +8,8 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-
-import java.sql.Timestamp;
-import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -36,8 +33,11 @@ public class DentistaService {
 
 
     public ResponseEntity salvar(DentistaDTO dentistaDTO) {
+        BCryptPasswordEncoder brCrypt = new BCryptPasswordEncoder();
         ObjectMapper mapper = new ObjectMapper();
         Dentista dentista = mapper.convertValue(dentistaDTO, Dentista.class);
+        dentista.getUsuario().setPassword(brCrypt.encode(dentistaDTO.getUsuario().getPassword()));
+
         try {
             Dentista dentistaRepoSalvo = dentistaRepository.save(dentista);
             return new ResponseEntity("Dentista " + dentista.getNome() + " Salvo",HttpStatus.CREATED);
@@ -66,9 +66,6 @@ public class DentistaService {
         log.info("Dentista excluído");
         return new ResponseEntity("Dentista foi excluído com sucesso", HttpStatus.OK);
     }
-
-
-
 
     public ResponseEntity atulizarDentistaParcial(DentistaDTO dentistaDTO) {
         Optional<Dentista> dentista = Optional.ofNullable(dentistaRepository.findByMatricula(dentistaDTO.getMatricula()));

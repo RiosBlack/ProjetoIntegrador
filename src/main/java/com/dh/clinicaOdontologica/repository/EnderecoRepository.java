@@ -6,7 +6,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface EnderecoRepository extends JpaRepository<Endereco,Long> {
-//    Optional<Endereco> findById(Long aLong);
 
 }
 

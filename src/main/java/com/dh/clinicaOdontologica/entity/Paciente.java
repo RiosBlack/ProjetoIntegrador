@@ -2,7 +2,6 @@ package com.dh.clinicaOdontologica.entity;
 
 
 import lombok.*;
-import org.hibernate.annotations.Cascade;
 import org.hibernate.validator.constraints.br.CPF;
 
 import javax.persistence.*;
@@ -13,43 +12,36 @@ import java.sql.Timestamp;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-//@ToString
+@ToString
 @Entity
 //@Table
-public class Paciente  {
-    //    private static final long serialVersionUID= 1L; //teste laiane
+public class Paciente {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="id")
+    @Column(name = "id")
     private Long id;
 
     @Column(nullable = false, length = 100)
-//    @Pattern(regexp = "[A-Z]+(.)", message = "Primeira letra maiuscula")
     @NotBlank(message = "Campo não informado")
     private String nome;
 
     @Column(nullable = false, length = 100)
-//    @Pattern(regexp = "[A-Z]+(.)", message = "Primeira letra maiuscula")
     @NotBlank(message = "Campo não informado")
     private String sobrenome;
 
     @Column(nullable = false, unique = true)
     @NotBlank(message = "Campo não informado")
-    @CPF(message = "Campo inválido")
+    @CPF(message = "CPF inválido")
     private String cpf;
 
-    //@DateTimeFormat(pattern = "dd/MM/yyyy")
-    //private LocalDateTime dataRegistro;
     @Column(nullable = false)
     private Timestamp dataRegistro;
 
-    //    @ManyToOne
-//    @JoinColumn(name="endereco_id")
-//    private Endereco endereco;
-    @OneToOne(cascade = CascadeType.ALL)
-    //@JoinColumn(name = "id_teste")
+    @OneToOne(cascade = CascadeType.ALL,orphanRemoval = true)
+    @JoinColumn(name = "endereco_id")
     private Endereco endereco;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.ALL,orphanRemoval = true)
+    @JoinColumn(name = "usuario_id")
     private Usuario usuario;
 }

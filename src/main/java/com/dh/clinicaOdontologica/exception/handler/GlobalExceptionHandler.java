@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 
 @ControllerAdvice
 public class GlobalExceptionHandler {
-//a
+
     @ExceptionHandler({CadastroInvalidoException.class})
     public ResponseEntity<String> processarErrorCadastroInvalido(CadastroInvalidoException exception){
         return new ResponseEntity(exception.getMessage(), HttpStatus.BAD_REQUEST);

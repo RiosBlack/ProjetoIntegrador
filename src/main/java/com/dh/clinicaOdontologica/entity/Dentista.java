@@ -23,15 +23,14 @@ public class Dentista {
     private String matricula;
 
     @Column(nullable = false, length = 100)
-//    @Pattern(regexp = "[A-Z]+(.)", message = "Primeira letra maiuscula")
     @NotBlank(message = "Campo não informado")
     private String nome;
 
     @Column(nullable = false, length = 100)
-//    @Pattern(regexp = "[A-Z]+(.)", message = "Primeira letra maiuscula")
     @NotBlank(message = "Campo não informado")
     private String sobrenome;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.ALL,orphanRemoval = true)
+    @JoinColumn(name = "usuario_id")
     private Usuario usuario;
 }

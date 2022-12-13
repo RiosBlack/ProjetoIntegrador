@@ -41,16 +41,12 @@ public class PacienteController {
         return pacienteService.atualizarPacienteTotal(pacienteDTO);
     }
 
-//    @PatchMapping()
-//    public ResponseEntity atualizarPacienteParcial(@RequestBody PacienteDTO pacienteDTO) {
-//        return pacienteService.atualizarPacienteParcial(pacienteDTO);
-//    }
+
 @PatchMapping()
 public ResponseEntity atualizarPacienteParcial(@RequestBody @Valid PacienteDTO pacienteDTO) throws CadastroInvalidoException {
     PacienteDTO pacienteDTOAlterado = pacienteService.atualizarPacienteParcial(pacienteDTO);
     if(pacienteDTOAlterado == null){
         throw new CadastroInvalidoException("Erro ao alterar paciente");
-//        return new ResponseEntity("Erro ao alterar paciente", HttpStatus.NOT_FOUND);
     }
     return new ResponseEntity("Paciente alterado com sucesso", HttpStatus.OK);
 }

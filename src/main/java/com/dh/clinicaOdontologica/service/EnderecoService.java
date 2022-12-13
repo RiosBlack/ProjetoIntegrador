@@ -24,7 +24,6 @@ public class EnderecoService {
     @Autowired
     private EnderecoRepository enderecoRepository;
 
-
     public List<EnderecoDTO> buscar(){
         log.info("Buscando endereço");
         List<Endereco> listaEndereco = enderecoRepository.findAll();

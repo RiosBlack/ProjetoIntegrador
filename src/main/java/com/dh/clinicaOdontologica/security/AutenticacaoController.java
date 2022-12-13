@@ -2,7 +2,6 @@ package com.dh.clinicaOdontologica.security;
 
 import com.dh.clinicaOdontologica.entity.dto.TokenDTO;
 import com.dh.clinicaOdontologica.entity.dto.UsuarioDTO;
-import com.dh.clinicaOdontologica.security.TokenService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

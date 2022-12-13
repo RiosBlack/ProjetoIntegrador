@@ -7,6 +7,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.sql.Timestamp;
@@ -20,9 +21,6 @@ public class PacienteService {
     @Autowired
     PacienteRepository pacienteRepository;
 
-//    static final Logger log = Logger.getLogger(PacienteService.class);
-
-
     public List<PacienteDTO> buscarTodos(){
         List<Paciente> listaPacientes = pacienteRepository.findAll();
         List<PacienteDTO> listPacienteDTO = new ArrayList<>();
@@ -35,8 +33,11 @@ public class PacienteService {
     }
 
     public PacienteDTO salvar(PacienteDTO pacienteDTO){
+        BCryptPasswordEncoder brCrypt = new BCryptPasswordEncoder();
         ObjectMapper mapper = new ObjectMapper();
         Paciente paciente = mapper.convertValue(pacienteDTO, Paciente.class);
+        paciente.getUsuario().setPassword(brCrypt.encode(pacienteDTO.getUsuario().getPassword()));
+
         try{
             paciente.setDataRegistro(Timestamp.from(Instant.now()));
             Paciente pacienteSalvo = pacienteRepository.save(paciente);
@@ -96,23 +97,6 @@ public PacienteDTO atualizarPacienteParcial(PacienteDTO pacienteDTO){
     return pacienteAlterado;
 }
 
-
-//    public ResponseEntity atualizarPacienteParcial(PacienteDTO pacienteDTO) {
-//        ObjectMapper mapper = new ObjectMapper();
-//        Optional<Paciente> pacienteCPF = pacienteRepository.findByCpf(pacienteDTO.getCpf());
-//        if (pacienteCPF.isEmpty()){
-//            return new ResponseEntity("O paciente não foi encontrado", HttpStatus.BAD_REQUEST);
-//        }
-//        Paciente pacienteAtualizado = pacienteCPF.get();
-//        if (pacienteDTO.getNome() != null || !pacienteDTO.getNome().isEmpty()){
-//            pacienteAtualizado.setNome(pacienteDTO.getNome());
-//        }
-//        if (pacienteDTO.getSobrenome() != null || !pacienteDTO.getSobrenome().isEmpty()){
-//            pacienteAtualizado.setSobrenome(pacienteDTO.getSobrenome());
-//        }
-//        pacienteRepository.save(pacienteAtualizado);
-//        return new ResponseEntity("Paciente Atualizado com sucesso", HttpStatus.OK);
-//    }
 
     public ResponseEntity deletar(String cpf) {
         Optional<Paciente> pacienteCPF = pacienteRepository.findByCpf(cpf);
