@@ -27,6 +27,8 @@ public class Usuario implements UserDetails {
     @Column(nullable = false, length = 90)
     private String password;
 
+
+
     @ManyToMany(fetch = FetchType.EAGER)
     private List<Perfil> perfis;
 

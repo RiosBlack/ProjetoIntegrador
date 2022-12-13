@@ -1,7 +1,6 @@
 package com.dh.clinicaOdontologica.controller;
 
 import com.dh.clinicaOdontologica.entity.Dentista;
-import com.dh.clinicaOdontologica.entity.Paciente;
 import com.dh.clinicaOdontologica.entity.dto.DentistaDTO;
 import com.dh.clinicaOdontologica.exception.CadastroInvalidoException;
 import com.dh.clinicaOdontologica.service.DentistaService;

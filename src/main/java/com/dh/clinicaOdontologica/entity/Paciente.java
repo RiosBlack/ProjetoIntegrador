@@ -49,4 +49,7 @@ public class Paciente  {
     @OneToOne(cascade = CascadeType.ALL)
     //@JoinColumn(name = "id_teste")
     private Endereco endereco;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    private Usuario usuario;
 }
