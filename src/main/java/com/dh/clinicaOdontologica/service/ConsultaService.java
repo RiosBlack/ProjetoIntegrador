@@ -21,6 +21,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 @Log4j
 @Service
@@ -96,6 +97,7 @@ public class ConsultaService {
             consulta.setDataConsulta(consultaDTO.getDataConsulta());
             consulta.setDentista(dentista.get());
             consulta.setPaciente(paciente.get());
+            consulta.setConsultaID(UUID.randomUUID().toString());
             consultaRepository.save(consulta);
 
             log.info("Consulta salva!");
