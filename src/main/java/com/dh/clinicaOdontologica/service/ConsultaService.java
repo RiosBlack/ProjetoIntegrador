@@ -16,7 +16,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.sql.Timestamp;
-import java.time.Instant;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -59,23 +58,6 @@ public class ConsultaService {
         ConsultaDTO consultaDTO = mapper.convertValue(consulta, ConsultaDTO.class);
         return new ResponseEntity(consultaDTO, HttpStatus.OK);
     }
-//   public ResponseEntity salvar(ConsultaDTO consultaDTO) {
-//       ObjectMapper mapper = new ObjectMapper();
-//       Consulta consulta = mapper.convertValue(consultaDTO, Consulta.class);
-//       try {
-//           consultaRepository.save(consulta);
-//           log.info("Consulta salva!");
-//           return new ResponseEntity("Consulta salva", HttpStatus.CREATED);
-//       } catch (Exception e) {
-//            log.error("Erro ao salvar consulta");
-//            return new ResponseEntity("Erro ao salvar consulta", HttpStatus.BAD_REQUEST);
-//       }
-//   }
-//public Consulta salvar(Consulta consulta) {
-//    consulta.setDataConsulta(Timestamp.from(Instant.now()));
-//    Consulta consultaSalva = consultaRepository.save(consulta);
-//    return consultaSalva;
-//}
 
     public ResponseEntity salvar(ConsultaDTO consultaDTO) {
         try {

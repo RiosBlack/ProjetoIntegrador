@@ -19,7 +19,5 @@ public interface ConsultaRepository extends JpaRepository<Consulta, Long> {
 
     @Query ("SELECT c FROM Consulta c WHERE c.dentista.matricula = :matricula AND c.dataConsulta = :dataConsulta")
     Consulta findByDentistaMatricula(@Param("matricula") String matricula, @Param("dataConsulta") Timestamp dataConsulta);
-
-//    Optional<Consulta> buscarConsultaID(String consultaID);
 }
 

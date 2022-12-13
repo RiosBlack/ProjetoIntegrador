@@ -17,16 +17,7 @@ public class ConsultaDTO {
     @NotBlank
     private Timestamp dataConsulta;
 
-//    private LocalDate dataConsulta;
-//    private LocalTime horaConsulta;
+
     private DentistaDTO dentista;
     private PacienteDTO paciente;
-
-//    public LocalDate getDataConsulta() {
-//        return dataHoraConsulta.toLocalDateTime().toLocalDate();
-//    }
-//
-//    public LocalTime getHoraConsulta() {
-//        return dataHoraConsulta.toLocalDateTime().toLocalTime();
-//    }
 }

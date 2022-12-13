@@ -1,9 +1,7 @@
 package com.dh.clinicaOdontologica.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+
+import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
@@ -12,9 +10,8 @@ import javax.validation.constraints.NotBlank;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-//@ToString
+@ToString
 @Entity
-//@Table
 public class Endereco{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -32,7 +29,4 @@ public class Endereco{
     private int numero;
     private String complemento;
 
-//    @JsonIgnore // teste laiane
-//    @OneToOne
-//    private List<Paciente> pacientes;
 }

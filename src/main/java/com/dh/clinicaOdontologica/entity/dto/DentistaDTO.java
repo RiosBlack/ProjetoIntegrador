@@ -14,11 +14,11 @@ import javax.validation.constraints.NotBlank;
 @NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class DentistaDTO {
-    @NotBlank
+    @NotBlank(message = "Campo não informado")
     private String matricula;
-    @NotBlank
+    @NotBlank(message = "Campo não informado")
     private String nome;
-    @NotBlank
+    @NotBlank(message = "Campo não informado")
     private String sobrenome;
-    private UsuarioDTO usuarioDTO;
+    private UsuarioDTO usuario;
 }
