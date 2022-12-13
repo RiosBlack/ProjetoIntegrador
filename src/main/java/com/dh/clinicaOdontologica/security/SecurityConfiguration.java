@@ -32,7 +32,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         http.csrf().disable()
                 .authorizeRequests()
                 .antMatchers(HttpMethod.GET,"/consulta").permitAll()
-                .antMatchers(HttpMethod.POST, "/auth").permitAll()
+               // .antMatchers(HttpMethod.POST, "/auth").permitAll()
+                .antMatchers("/auth","/v3/api-docs/**","/swagger-ui/**").permitAll()
+
                 .anyRequest().authenticated()
                 .and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and().addFilterBefore(autenticacaoViaTokenFilter, UsernamePasswordAuthenticationFilter.class);
