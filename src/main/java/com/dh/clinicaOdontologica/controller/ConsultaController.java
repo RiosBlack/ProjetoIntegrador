@@ -29,19 +29,19 @@ public class ConsultaController {
         return consultaService.buscarUnicaConsulta(consultaID);
     }
 
-//    @PostMapping()
-//    public ResponseEntity salvar(@RequestBody @Valid ConsultaDTO consultaDTO){
-//        return consultaService.salvar(consultaDTO);
-//    }
-@PostMapping()
-public ResponseEntity salvar( @RequestBody @Valid Consulta consulta) throws CadastroInvalidoException {
-    try{
-        Consulta consultaSalva = consultaService.salvar(consulta);
-        return new ResponseEntity( "Consulta marcada para o paciente: "+consultaSalva.getDataConsulta(), HttpStatus.CREATED);
-    }catch (Exception e){
-        throw new CadastroInvalidoException("Erro ao marcar consulta");
+    @PostMapping()
+    public ResponseEntity salvar(@RequestBody @Valid ConsultaDTO consultaDTO){
+        return consultaService.salvar(consultaDTO);
     }
-}
+//@PostMapping()
+//public ResponseEntity salvar( @RequestBody @Valid Consulta consulta) throws CadastroInvalidoException {
+//    try{
+//        Consulta consultaSalva = consultaService.salvar(consulta);
+//        return new ResponseEntity( "Consulta marcada para o paciente: "+consultaSalva.getDataConsulta(), HttpStatus.CREATED);
+//    }catch (Exception e){
+//        throw new CadastroInvalidoException("Erro ao marcar consulta");
+//    }
+//}
     
     @DeleteMapping()
     public ResponseEntity deletar (@RequestParam("consultaID") String consultaID){
