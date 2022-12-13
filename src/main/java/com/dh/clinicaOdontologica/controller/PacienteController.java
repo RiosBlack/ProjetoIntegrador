@@ -43,13 +43,12 @@ public class PacienteController {
 //    }
 
     @PostMapping()
-    public ResponseEntity salvar( @RequestBody @Valid Paciente paciente) throws CadastroInvalidoException {
-        try{
-            Paciente pacienteSalvo = pacienteService.salvar(paciente);
-            return new ResponseEntity( "Paciente "+pacienteSalvo.getNome()+" criado com sucesso", HttpStatus.CREATED);
-        }catch (Exception e){
+    public ResponseEntity salvar( @RequestBody @Valid PacienteDTO paciente) throws CadastroInvalidoException {
+            PacienteDTO pacienteSalvo = pacienteService.salvar(paciente);
+        if(pacienteSalvo == null){
             throw new CadastroInvalidoException("Erro ao cadastrar paciente");
         }
+        return new ResponseEntity( "Paciente "+pacienteSalvo.getNome()+" criado com sucesso", HttpStatus.CREATED);
     }
 
     @PutMapping()
@@ -57,10 +56,18 @@ public class PacienteController {
         return pacienteService.atualizarPacienteTotal(pacienteDTO);
     }
 
-    @PatchMapping()
-    public ResponseEntity atualizarPacienteParcial(@RequestBody PacienteDTO pacienteDTO) {
-        return pacienteService.atualizarPacienteParcial(pacienteDTO);
+//    @PatchMapping()
+//    public ResponseEntity atualizarPacienteParcial(@RequestBody PacienteDTO pacienteDTO) {
+//        return pacienteService.atualizarPacienteParcial(pacienteDTO);
+//    }
+@PatchMapping()
+public ResponseEntity atualizarPacienteParcial(@RequestBody @Valid PacienteDTO pacienteDTO){
+    PacienteDTO pacienteDTOAlterado = pacienteService.atualizarPacienteParcial(pacienteDTO);
+    if(pacienteDTOAlterado == null){
+        return new ResponseEntity("Erro ao alterar paciente", HttpStatus.NOT_FOUND);
     }
+    return new ResponseEntity("Paciente alterado com sucesso", HttpStatus.OK);
+}
 
     @DeleteMapping()
     public  ResponseEntity deletar(@RequestParam("cpf") String cpf){

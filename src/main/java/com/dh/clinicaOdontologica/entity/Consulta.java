@@ -4,6 +4,8 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Getter
 @Setter
@@ -11,6 +13,7 @@ import java.sql.Timestamp;
 @NoArgsConstructor
 @ToString
 @Entity
+@Table
 public class Consulta {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -18,12 +21,12 @@ public class Consulta {
     private String consultaID;
     @Column (nullable = false)
     private Timestamp dataConsulta;
-
-    @OneToOne
-    @JoinColumn(name = "paciente_id")
+//    private LocalDateTime dataConsulta; //teste laiane
+    @OneToOne(cascade = CascadeType.ALL)
+//@JoinColumn(name = "paciente_id")
     private Paciente paciente;
 
-    @OneToOne
-    @JoinColumn(name = "dentista_id")
+    @OneToOne(cascade = CascadeType.ALL)
+//    @JoinColumn(name = "dentista_id")
     private Dentista dentista;
 }

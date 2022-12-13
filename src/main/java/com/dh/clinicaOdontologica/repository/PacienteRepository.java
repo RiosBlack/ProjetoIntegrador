@@ -12,5 +12,8 @@ public interface PacienteRepository extends JpaRepository<Paciente, Long> {
 
     Optional<Paciente> findByCpf(String cpf);
 
+    List<Paciente> findByEnderecoId(Long id); //testando LAIANE
+//Este método informa que deve-se buscar o atributo endereco em paciente (que é do tipo CestaDeCompra) e usar o atributo id do endereco dentro de Paciente para recuperar os registros desejados.
+// Ele vai recuperar todos os produtos que estiverem associados ao id do endereco passado como parâmetro.
 }
 
