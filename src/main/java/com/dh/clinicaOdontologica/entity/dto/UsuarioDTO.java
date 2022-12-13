@@ -1,16 +1,12 @@
 package com.dh.clinicaOdontologica.entity.dto;
 
 
-import com.dh.clinicaOdontologica.entity.Dentista;
-import com.dh.clinicaOdontologica.entity.Paciente;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 
-import javax.persistence.CascadeType;
-import javax.persistence.OneToOne;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 

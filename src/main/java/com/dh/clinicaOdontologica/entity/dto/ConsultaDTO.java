@@ -5,8 +5,6 @@ import lombok.*;
 
 import javax.validation.constraints.NotBlank;
 import java.sql.Timestamp;
-import java.time.LocalDate;
-import java.time.LocalTime;
 
 @Builder
 @Getter
