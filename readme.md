@@ -10,7 +10,7 @@ Repositório criado para o projeto integrador de Back-end I do curso **Certified
 Guilherme Lima
 
 ##### Desenvolvido por:
-Douglas Rios,
-Laiane Barbalho,
+Douglas Rios - https://github.com/RiosBlack,
+Laiane Barbalho - https://github.com/laianebarbalho,
 Nathany Oliveira - https://github.com/NathanyOliveira,
-Washington Damacena.
+Washington Damacena - https://github.com/1pretom.
