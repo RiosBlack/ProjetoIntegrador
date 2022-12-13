@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 
 @Getter
 @Setter
@@ -18,11 +19,16 @@ public class Dentista {
     private Long id;
 
     @Column(nullable = false, unique = true, length = 10)
+    @NotBlank(message = "Campo não informado")
     private String matricula;
 
     @Column(nullable = false, length = 100)
+//    @Pattern(regexp = "[A-Z]+(.)", message = "Primeira letra maiuscula")
+    @NotBlank(message = "Campo não informado")
     private String nome;
 
     @Column(nullable = false, length = 100)
+//    @Pattern(regexp = "[A-Z]+(.)", message = "Primeira letra maiuscula")
+    @NotBlank(message = "Campo não informado")
     private String sobrenome;
 }
