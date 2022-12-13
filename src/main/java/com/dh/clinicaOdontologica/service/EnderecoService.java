@@ -37,7 +37,7 @@ public class EnderecoService {
         return listEnderecoDTO;
     }
 
-<<<<<<< HEAD
+
     public ResponseEntity salvar(EnderecoDTO enderecoDTO){
         ObjectMapper mapper = new ObjectMapper();
         Endereco endereco = mapper.convertValue(enderecoDTO, Endereco.class);
@@ -54,7 +54,7 @@ public class EnderecoService {
 //    public Endereco salvar(Endereco endereco) {
 //        Endereco enderecoSalvo = enderecoRepository.save(endereco);
 //        return enderecoSalvo;
-=======
+
 //    public ResponseEntity salvar(EnderecoDTO enderecoDTO){
 //        ObjectMapper mapper = new ObjectMapper();
 //        Endereco endereco = mapper.convertValue(enderecoDTO, Endereco.class);
@@ -66,7 +66,7 @@ public class EnderecoService {
 //            log.info("Erro ao cadastrar endereço.");
 //            return new ResponseEntity("Erro ao cadastrar o endereço", HttpStatus.BAD_REQUEST);
 //        }
->>>>>>> laianeTesting
+
 //    }
 
     public Endereco salvar(Endereco endereco) {
