@@ -3,6 +3,7 @@ package com.dh.clinicaOdontologica.service;
 import com.dh.clinicaOdontologica.entity.Endereco;
 import com.dh.clinicaOdontologica.entity.Paciente;
 import com.dh.clinicaOdontologica.entity.dto.EnderecoDTO;
+import com.dh.clinicaOdontologica.entity.dto.PacienteDTO;
 import com.dh.clinicaOdontologica.repository.EnderecoRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.log4j.Log4j;
@@ -37,43 +38,16 @@ public class EnderecoService {
         return listEnderecoDTO;
     }
 
-
-    public ResponseEntity salvar(EnderecoDTO enderecoDTO){
-        ObjectMapper mapper = new ObjectMapper();
-        Endereco endereco = mapper.convertValue(enderecoDTO, Endereco.class);
-        try{
-            log.info("Endereço criado com sucesso");
-            enderecoRepository.save(endereco);
-            return new ResponseEntity("Endereço criado com sucesso.", HttpStatus.OK);
-        } catch (Exception e){
-            log.info("Erro ao cadastrar endereço.");
-            return new ResponseEntity("Erro ao cadastrar o endereço", HttpStatus.BAD_REQUEST);
-        }
-    }
-
-//    public Endereco salvar(Endereco endereco) {
-//        Endereco enderecoSalvo = enderecoRepository.save(endereco);
-//        return enderecoSalvo;
-
-//    public ResponseEntity salvar(EnderecoDTO enderecoDTO){
-//        ObjectMapper mapper = new ObjectMapper();
-//        Endereco endereco = mapper.convertValue(enderecoDTO, Endereco.class);
-//        try{
-//            log.info("Endereço criado com sucesso");
-//            Endereco endereco1 = enderecoRepository.save(endereco);
-//            return new ResponseEntity("Endereço criado com sucesso.", HttpStatus.OK);
-//        } catch (Exception e){
-//            log.info("Erro ao cadastrar endereço.");
-//            return new ResponseEntity("Erro ao cadastrar o endereço", HttpStatus.BAD_REQUEST);
-//        }
-
-//    }
-
-    public Endereco salvar(Endereco endereco) {
+ public EnderecoDTO salvar(EnderecoDTO enderecoDTO){
+    ObjectMapper mapper = new ObjectMapper();
+    Endereco endereco = mapper.convertValue(enderecoDTO, Endereco.class);
+    try{
         Endereco enderecoSalvo = enderecoRepository.save(endereco);
-        return enderecoSalvo;
+        return mapper.convertValue(enderecoSalvo, EnderecoDTO.class);
+    } catch (Exception e){
+        return null;
     }
-
+}
     public ResponseEntity deletar(Long id) {
         log.info("Buscando ID do endereço.");
         Optional<Endereco> endereco = enderecoRepository.findById(id);
