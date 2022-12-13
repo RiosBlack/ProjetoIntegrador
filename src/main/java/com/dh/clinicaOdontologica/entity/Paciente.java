@@ -1,7 +1,9 @@
 package com.dh.clinicaOdontologica.entity;
 
 
+
 import lombok.*;
+
 import org.hibernate.validator.constraints.br.CPF;
 
 import javax.persistence.*;

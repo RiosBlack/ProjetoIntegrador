@@ -1,5 +1,6 @@
 package com.dh.clinicaOdontologica.entity;
 
+
 import lombok.*;
 
 import javax.persistence.*;
