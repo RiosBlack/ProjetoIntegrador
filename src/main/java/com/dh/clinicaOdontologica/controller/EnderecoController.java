@@ -24,19 +24,13 @@ public class EnderecoController {
         return enderecoService.buscar();
     }
 
-//    @PostMapping()
-//    public ResponseEntity salvar(@RequestBody EnderecoDTO enderecoDTO){
-//        return enderecoService.salvar(enderecoDTO);
-//    }
-
     @PostMapping()
-    public ResponseEntity salvar( @RequestBody @Valid Endereco endereco) throws CadastroInvalidoException {
-        try{
-            Endereco enderecoSalvo = enderecoService.salvar(endereco);
-            return new ResponseEntity( "Endereco "+enderecoSalvo.getRua()+" criado com sucesso", HttpStatus.CREATED);
-        }catch (Exception e){
+    public ResponseEntity salvar( @RequestBody @Valid EnderecoDTO endereco) throws CadastroInvalidoException {
+            EnderecoDTO enderecoSalvo = enderecoService.salvar(endereco);
+        if(enderecoSalvo == null){
             throw new CadastroInvalidoException("Erro ao cadastrar endereco");
         }
+            return new ResponseEntity( "Endereco "+enderecoSalvo.getRua()+" criado com sucesso", HttpStatus.CREATED);
     }
 
     @DeleteMapping()

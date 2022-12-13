@@ -1,6 +1,5 @@
 package com.dh.clinicaOdontologica.controller;
 
-import com.dh.clinicaOdontologica.entity.Paciente;
 import com.dh.clinicaOdontologica.entity.dto.PacienteDTO;
 import com.dh.clinicaOdontologica.exception.CadastroInvalidoException;
 import com.dh.clinicaOdontologica.service.PacienteService;
@@ -28,20 +27,6 @@ public class PacienteController {
         return pacienteService.buscarPacienteCpf(cpf);
     }
 
-//    @PostMapping()
-//    public ResponseEntity<PacienteDTO> salvar(@RequestBody @Valid PacienteDTO pacienteDTO){
-//        return pacienteService.salvar(pacienteDTO);
-//    }
-//    @PostMapping
-//    public ResponseEntity<PacienteDTO> salvar( @RequestBody @Valid PacienteDTO pacienteDTO) throws CadastroInvalidoException {
-//        try{
-//            PacienteDTO pacienteSalvo = pacienteService.salvar(pacienteDTO).getBody();
-//            return new ResponseEntity( "Paciente "+pacienteSalvo.getNome()+" criado com sucesso", HttpStatus.CREATED);
-//        }catch (Exception e){
-//            throw new CadastroInvalidoException("Erro ao cadastrar Paciente");
-//        }
-//    }
-
     @PostMapping()
     public ResponseEntity salvar( @RequestBody @Valid PacienteDTO paciente) throws CadastroInvalidoException {
             PacienteDTO pacienteSalvo = pacienteService.salvar(paciente);
@@ -61,10 +46,11 @@ public class PacienteController {
 //        return pacienteService.atualizarPacienteParcial(pacienteDTO);
 //    }
 @PatchMapping()
-public ResponseEntity atualizarPacienteParcial(@RequestBody @Valid PacienteDTO pacienteDTO){
+public ResponseEntity atualizarPacienteParcial(@RequestBody @Valid PacienteDTO pacienteDTO) throws CadastroInvalidoException {
     PacienteDTO pacienteDTOAlterado = pacienteService.atualizarPacienteParcial(pacienteDTO);
     if(pacienteDTOAlterado == null){
-        return new ResponseEntity("Erro ao alterar paciente", HttpStatus.NOT_FOUND);
+        throw new CadastroInvalidoException("Erro ao alterar paciente");
+//        return new ResponseEntity("Erro ao alterar paciente", HttpStatus.NOT_FOUND);
     }
     return new ResponseEntity("Paciente alterado com sucesso", HttpStatus.OK);
 }

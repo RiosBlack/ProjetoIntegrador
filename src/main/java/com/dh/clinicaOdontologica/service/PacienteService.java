@@ -4,7 +4,6 @@ import com.dh.clinicaOdontologica.entity.Paciente;
 import com.dh.clinicaOdontologica.entity.dto.PacienteDTO;
 import com.dh.clinicaOdontologica.repository.PacienteRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,7 +20,7 @@ public class PacienteService {
     @Autowired
     PacienteRepository pacienteRepository;
 
-    static final Logger log = Logger.getLogger(PacienteService.class);
+//    static final Logger log = Logger.getLogger(PacienteService.class);
 
 
     public List<PacienteDTO> buscarTodos(){
@@ -35,8 +34,6 @@ public class PacienteService {
         return listPacienteDTO;
     }
 
-
-
     public PacienteDTO salvar(PacienteDTO pacienteDTO){
         ObjectMapper mapper = new ObjectMapper();
         Paciente paciente = mapper.convertValue(pacienteDTO, Paciente.class);
@@ -44,18 +41,10 @@ public class PacienteService {
             paciente.setDataRegistro(Timestamp.from(Instant.now()));
             Paciente pacienteSalvo = pacienteRepository.save(paciente);
             return mapper.convertValue(pacienteSalvo, PacienteDTO.class);
-//            return new ResponseEntity("O paciente " + pacienteSalvo.getNome() + " foi salvo", HttpStatus.CREATED);
         } catch (Exception e){
             return null;
-//            return new ResponseEntity("Erro ao cadastrar paciente", HttpStatus.BAD_REQUEST);
         }
     }
-
-//    public Paciente salvar(Paciente paciente) {
-//        paciente.setDataRegistro(Timestamp.from(Instant.now()));
-//        Paciente pacienteSalvo = pacienteRepository.save(paciente);
-//        return pacienteSalvo;
-//    }
 
 
 
@@ -133,6 +122,4 @@ public PacienteDTO atualizarPacienteParcial(PacienteDTO pacienteDTO){
         pacienteRepository.deleteById(Long.valueOf(pacienteCPF.get().getId()));
         return new ResponseEntity("O paciente foi excluido.", HttpStatus.OK);
     }
-
-
 }

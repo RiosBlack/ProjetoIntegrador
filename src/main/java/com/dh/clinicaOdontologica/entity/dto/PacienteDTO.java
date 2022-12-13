@@ -29,4 +29,5 @@ public class PacienteDTO {
 //    private LocalDate dataRegistro;
 //    private LocalTime horaRegistro;
 
+    private EnderecoDTO endereco;
 }
