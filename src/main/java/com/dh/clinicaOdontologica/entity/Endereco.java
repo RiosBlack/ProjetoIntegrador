@@ -25,6 +25,7 @@ public class Endereco{
     @Column(nullable = false)
     @NotBlank(message = "Não pode estar vazio")
     private String cidade;
+    
     private String estado;
     private String rua;
     private int numero;

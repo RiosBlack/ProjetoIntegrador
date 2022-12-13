@@ -31,19 +31,12 @@ public class DentistaController {
         return dentistaService.buscarDentistaMatricula(matricula);
     }
 
-//    @PostMapping()
-//    public ResponseEntity salvar(@RequestBody DentistaDTO dentistaDTO) {
-//        return dentistaService.salvar(dentistaDTO);
-//    }
-@PostMapping()
-public ResponseEntity salvar( @RequestBody @Valid Dentista dentista) throws CadastroInvalidoException {
-    try{
-        Dentista dentistaSalvo  = dentistaService.salvar(dentista);
-        return new ResponseEntity( "Dentista "+dentistaSalvo.getNome()+ " criado com sucesso!", HttpStatus.CREATED);
-    }catch (Exception e){
-        throw new CadastroInvalidoException("Erro ao cadastrar dentista");
+
+    @PostMapping()
+    public ResponseEntity salvar( @RequestBody @Valid DentistaDTO dentista) throws CadastroInvalidoException {
+        return dentistaService.salvar(dentista);
     }
-}
+
     @DeleteMapping()
     public ResponseEntity deletar(@RequestParam("matricula") String matricula) {
         return dentistaService.deletar(matricula);

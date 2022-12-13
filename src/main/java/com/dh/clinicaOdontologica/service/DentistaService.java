@@ -35,33 +35,27 @@ public class DentistaService {
     }
 
 
-//    public ResponseEntity salvar(DentistaDTO dentistaDTO) {
-//        ObjectMapper mapper = new ObjectMapper();
-//        Dentista dentista = mapper.convertValue(dentistaDTO, Dentista.class);
-//        try {
-//            Dentista dentistaRepoSalvo = dentistaRepository.save(dentista);
-//            return new ResponseEntity("Dentista " + dentista.getNome() + " Salvo",HttpStatus.CREATED);
-//        } catch (Exception e) {
-//            return new ResponseEntity("Erro ao cadastrar o dentista",HttpStatus.BAD_REQUEST);
-//        }
-//    }
-
-    public Dentista salvar(Dentista dentista) {
-        Dentista dentistaSalvo = dentistaRepository.save(dentista);
-        return dentistaSalvo;
+    public ResponseEntity salvar(DentistaDTO dentistaDTO) {
+        ObjectMapper mapper = new ObjectMapper();
+        Dentista dentista = mapper.convertValue(dentistaDTO, Dentista.class);
+        try {
+            Dentista dentistaRepoSalvo = dentistaRepository.save(dentista);
+            return new ResponseEntity("Dentista " + dentista.getNome() + " Salvo",HttpStatus.CREATED);
+        } catch (Exception e) {
+            return new ResponseEntity("Erro ao cadastrar o dentista",HttpStatus.BAD_REQUEST);
+        }
     }
 
     public ResponseEntity buscarDentistaMatricula(String matricula) {
         ObjectMapper mapper = new ObjectMapper();
-        Optional<Dentista> dentista = Optional.ofNullable(dentistaRepository.findByMatricula(matricula));
-        if (dentista.isEmpty()){
-            log.info("Matricula não encontrada");
-            return new ResponseEntity("Matricula do dentista não encontrado", HttpStatus.BAD_REQUEST);
+        Dentista dentistaMatricula = dentistaRepository.findByMatricula(matricula);
+        if (dentistaMatricula == null){
+            return new ResponseEntity("Dentista não encontrado", HttpStatus.BAD_REQUEST);
         }
-        DentistaDTO dentistaDTO = mapper.convertValue(dentista.get(), DentistaDTO.class);
-        log.info("Matricula do dentista localizada.");
-        return new ResponseEntity<>(dentistaDTO, HttpStatus.OK);
+        DentistaDTO dentistaDTO = mapper.convertValue(dentistaMatricula, DentistaDTO.class);
+        return new ResponseEntity(dentistaDTO, HttpStatus.OK);
     }
+
     public ResponseEntity deletar(String matricula){
         Optional<Dentista> dentista = Optional.ofNullable(dentistaRepository.findByMatricula(matricula));
         if(dentista.isEmpty()){
