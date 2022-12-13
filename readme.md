@@ -12,5 +12,5 @@ Guilherme Lima
 ##### Desenvolvido por:
 Douglas Rios,
 Laiane Barbalho,
-Nathany Oliveira - https://github.com/NathanyOliveira
+Nathany Oliveira - https://github.com/NathanyOliveira,
 Washington Damacena.
