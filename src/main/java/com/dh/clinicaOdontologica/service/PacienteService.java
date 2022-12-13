@@ -37,23 +37,25 @@ public class PacienteService {
 
 
 
-//    public ResponseEntity<PacienteDTO> salvar(PacienteDTO pacienteDTO){
-//        ObjectMapper mapper = new ObjectMapper();
-//        Paciente paciente = mapper.convertValue(pacienteDTO, Paciente.class);
-//        try{
-//            paciente.setDataRegistro(Timestamp.from(Instant.now()));
-//            Paciente pacienteSalvo = pacienteRepository.save(paciente);
+    public PacienteDTO salvar(PacienteDTO pacienteDTO){
+        ObjectMapper mapper = new ObjectMapper();
+        Paciente paciente = mapper.convertValue(pacienteDTO, Paciente.class);
+        try{
+            paciente.setDataRegistro(Timestamp.from(Instant.now()));
+            Paciente pacienteSalvo = pacienteRepository.save(paciente);
+            return mapper.convertValue(pacienteSalvo, PacienteDTO.class);
 //            return new ResponseEntity("O paciente " + pacienteSalvo.getNome() + " foi salvo", HttpStatus.CREATED);
-//        } catch (Exception e){
+        } catch (Exception e){
+            return null;
 //            return new ResponseEntity("Erro ao cadastrar paciente", HttpStatus.BAD_REQUEST);
-//        }
-//    }
-
-    public Paciente salvar(Paciente paciente) {
-        paciente.setDataRegistro(Timestamp.from(Instant.now()));
-        Paciente pacienteSalvo = pacienteRepository.save(paciente);
-        return pacienteSalvo;
+        }
     }
+
+//    public Paciente salvar(Paciente paciente) {
+//        paciente.setDataRegistro(Timestamp.from(Instant.now()));
+//        Paciente pacienteSalvo = pacienteRepository.save(paciente);
+//        return pacienteSalvo;
+//    }
 
 
 
@@ -93,8 +95,8 @@ public PacienteDTO atualizarPacienteParcial(PacienteDTO pacienteDTO){
     if(pacienteDTO.getSobrenome() != null){
         paciente.setSobrenome(pacienteDTO.getSobrenome());
     }
-    if(pacienteDTO.getDataHoraRegistro() != null){
-        paciente.setDataRegistro(pacienteDTO.getDataHoraRegistro());
+    if(pacienteDTO.getDataRegistro() != null){
+        paciente.setDataRegistro(pacienteDTO.getDataRegistro());
     }
     if(pacienteDTO.getCpf() != null){
         paciente.setCpf(pacienteDTO.getCpf());

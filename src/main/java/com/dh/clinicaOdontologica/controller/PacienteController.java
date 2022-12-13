@@ -43,13 +43,12 @@ public class PacienteController {
 //    }
 
     @PostMapping()
-    public ResponseEntity salvar( @RequestBody @Valid Paciente paciente) throws CadastroInvalidoException {
-        try{
-            Paciente pacienteSalvo = pacienteService.salvar(paciente);
-            return new ResponseEntity( "Paciente "+pacienteSalvo.getNome()+" criado com sucesso", HttpStatus.CREATED);
-        }catch (Exception e){
+    public ResponseEntity salvar( @RequestBody @Valid PacienteDTO paciente) throws CadastroInvalidoException {
+            PacienteDTO pacienteSalvo = pacienteService.salvar(paciente);
+        if(pacienteSalvo == null){
             throw new CadastroInvalidoException("Erro ao cadastrar paciente");
         }
+        return new ResponseEntity( "Paciente "+pacienteSalvo.getNome()+" criado com sucesso", HttpStatus.CREATED);
     }
 
     @PutMapping()
