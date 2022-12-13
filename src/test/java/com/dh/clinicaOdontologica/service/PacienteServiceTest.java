@@ -1,9 +1,10 @@
 package com.dh.clinicaOdontologica.service;
 
 
-import com.dh.clinicaOdontologica.entity.Endereco;
-import com.dh.clinicaOdontologica.entity.Paciente;
+import com.dh.clinicaOdontologica.entity.Usuario;
+import com.dh.clinicaOdontologica.entity.dto.EnderecoDTO;
 import com.dh.clinicaOdontologica.entity.dto.PacienteDTO;
+import com.dh.clinicaOdontologica.entity.dto.UsuarioDTO;
 import com.dh.clinicaOdontologica.repository.EnderecoRepository;
 import com.dh.clinicaOdontologica.repository.PacienteRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -11,25 +12,39 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.parameters.P;
 
 import java.sql.Timestamp;
 import java.time.Instant;
+import java.util.Optional;
 
 @SpringBootTest
+//@Log4j2
+
 public class PacienteServiceTest {
     @Autowired
     PacienteService service;
+
+    @Autowired
+    EnderecoService enderecoService;
+
     ObjectMapper mapper = new ObjectMapper();
     @Autowired
     private EnderecoRepository enderecoRepository;
     @Autowired
     private PacienteRepository pacienteRepository;
 
-//    Logger log = Logger.getLogger(PacienteServiceTest.class);
+    private static final org.apache.logging.log4j.Logger log = org.apache.logging.log4j.LogManager.getLogger(PacienteServiceTest.class);
 
     @Test
     void salvar(){
-        Endereco endereco = new Endereco();
+
+        UsuarioDTO usuario = new UsuarioDTO();
+        usuario.setUsername("laiane");
+        usuario.setPassword("123456");
+
+        EnderecoDTO endereco = new EnderecoDTO();
         endereco.setRua("Rua do cabeludo");
         endereco.setNumero(50);
         endereco.setCidade("Recife");
@@ -37,65 +52,92 @@ public class PacienteServiceTest {
         endereco.setCep("50370-890");
         endereco.setComplemento("casa");
 
-        Endereco enderecoSalvo = enderecoRepository.save(endereco);
-//        log.info("Endereco foi salvo com sucesso");
+        EnderecoDTO enderecoSalvo = enderecoService.salvar(endereco);
+        log.info("Endereco foi salvo com sucesso");
         System.out.println(enderecoSalvo);
 
-        Paciente paciente = new Paciente();
+        PacienteDTO paciente = new PacienteDTO();
         paciente.setNome("Laiane");
         paciente.setSobrenome("Barbalho");
-        paciente.setCpf("06848748498");//
+        paciente.setCpf("06848748498");
         paciente.setDataRegistro(Timestamp.from(Instant.now()));
         paciente.setEndereco(endereco);
-        Paciente pacienteSalvo = pacienteRepository.save(paciente);
+        paciente.setUsuario(usuario);
 
-        System.out.println(paciente);
+        PacienteDTO pacienteSalvo = service.salvar(paciente);
+
+        System.out.println(pacienteSalvo);
         System.out.println();
-        Assertions.assertNotNull(paciente.getId());
+
     }
     @Test
     void atualizarPacienteParcial(){
 
-        //Criando paciente
-        Endereco endereco1 = new Endereco();
-        endereco1.setRua("Rua do cabeludo");
-        endereco1.setNumero(50);
-        endereco1.setCidade("Recife");
-        endereco1.setEstado("PE");
-        endereco1.setCep("50370-890");
-        endereco1.setComplemento("casa");
+        EnderecoDTO endereco = new EnderecoDTO();
+        endereco.setRua("Rua do cabeludo");
+        endereco.setNumero(50);
+        endereco.setCidade("Recife");
+        endereco.setEstado("PE");
+        endereco.setCep("50370-890");
+        endereco.setComplemento("casa");
 
+        EnderecoDTO enderecoSalvo = enderecoService.salvar(endereco);
+        System.out.println(enderecoSalvo);
 
+        PacienteDTO pacienteDTO = new PacienteDTO();
+        pacienteDTO.setNome("Laiane");
+        pacienteDTO.setSobrenome("Barbalho");
+        pacienteDTO.setCpf("06848748498");
+        pacienteDTO.setDataRegistro(Timestamp.from(Instant.now()));
+        pacienteDTO.setEndereco(endereco);
+        PacienteDTO pacienteSalvo = service.salvar(pacienteDTO);
 
-        Endereco enderecoSalvo1 = enderecoRepository.save(endereco1);
-        System.out.println(enderecoSalvo1);
+        System.out.println(pacienteSalvo);
+        System.out.println();
 
-        Paciente paciente = new Paciente();
-        paciente.setNome("Laiane");
-        paciente.setSobrenome("Barbalho");
-        paciente.setCpf("06848748498");//
-        paciente.setDataRegistro(Timestamp.from(Instant.now()));
-        paciente.setEndereco(enderecoSalvo1);
-        Paciente pacienteSalvo = pacienteRepository.save(paciente);
-
-        System.out.println(paciente);
-
-        //Alterando nome do paciente
         String nomePaciente = pacienteSalvo.getNome();
+        log.info("o nome retornado do pacienteSalvo.getNome() eh: " + nomePaciente);
+
         pacienteSalvo.setNome("Bernadete");
-        System.out.println(paciente);
 
-        //Convertendo produto para produtoDTO
-        PacienteDTO pacienteSalvoDTO = mapper.convertValue(paciente,PacienteDTO.class);
+        PacienteDTO pacienteSalvoDTO = mapper.convertValue(pacienteSalvo,PacienteDTO.class);
 
-        //Salvando a alteração do produto
         PacienteDTO pacienteDTOAlterado = service.atualizarPacienteParcial(pacienteSalvoDTO);
 
-        System.out.println();
-        //Validando a alterção do produto
-//        Assertions.assertFalse(produtoDTOAlterado.getNome().equals(nomeProduto));
-
+        System.out.println(pacienteDTOAlterado.getNome());
+        log.info("validacao se o paciente foi salvo");
+        Assertions.assertFalse(pacienteDTOAlterado.getNome().equals(pacienteSalvo));
     }
 
+    @Test
+    void deletarPaciente() {
+        EnderecoDTO endereco = new EnderecoDTO();
+        endereco.setRua("Rua do cabeludo");
+        endereco.setNumero(50);
+        endereco.setCidade("Recife");
+        endereco.setEstado("PE");
+        endereco.setCep("50370-890");
+        endereco.setComplemento("casa");
 
+        EnderecoDTO enderecoSalvo = enderecoService.salvar(endereco);
+        System.out.println(enderecoSalvo);
+
+        PacienteDTO pacienteDTO = new PacienteDTO();
+        pacienteDTO.setNome("Laiane");
+        pacienteDTO.setSobrenome("Barbalho");
+        pacienteDTO.setCpf("06848748498");
+        pacienteDTO.setDataRegistro(Timestamp.from(Instant.now()));
+        pacienteDTO.setEndereco(endereco);
+        PacienteDTO pacienteSalvo = service.salvar(pacienteDTO);
+
+        System.out.println(pacienteSalvo.getCpf());
+
+        service.deletar(pacienteSalvo.getCpf());
+        ResponseEntity pacienteDeletado = service.buscarPacienteCpf(pacienteSalvo.getCpf());
+
+        if(pacienteDeletado == null) {
+            System.out.println("O paciente foi excluído");
+        }
+        System.out.println("Não foi possível deletar o paciente");
+    }
 }
