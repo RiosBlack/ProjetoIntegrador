@@ -31,4 +31,7 @@ public class Dentista {
 //    @Pattern(regexp = "[A-Z]+(.)", message = "Primeira letra maiuscula")
     @NotBlank(message = "Campo não informado")
     private String sobrenome;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    private Usuario usuario;
 }

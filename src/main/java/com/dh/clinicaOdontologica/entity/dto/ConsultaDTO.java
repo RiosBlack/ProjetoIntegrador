@@ -3,6 +3,7 @@ package com.dh.clinicaOdontologica.entity.dto;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
 
+import javax.validation.constraints.NotBlank;
 import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -15,6 +16,7 @@ import java.time.LocalTime;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class ConsultaDTO {
     private String consultaID;
+    @NotBlank
     private Timestamp dataConsulta;
 
 //    private LocalDate dataConsulta;
